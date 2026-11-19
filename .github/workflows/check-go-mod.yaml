@@ -1,0 +1,35 @@
+---
+name: Check for go mod changes
+
+on:
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-go-mod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup golang
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+
+      # A dependency added without re-running `mage dev:vendor` leaves go.mod, go.sum and
+      # vendor/ disagreeing, and the build that notices is a release built with no network.
+      # Failing here instead is the whole point of the job.
+      - name: Test go mod
+        run: |
+          go mod tidy
+          go mod vendor
+          git diff --exit-code go.mod go.sum vendor/
+
+      # go run ./magefiles/core rather than mage: same targets, but it builds from vendor/ and
+      # needs no mage binary on the runner.
+      - name: Verify the offline build
+        run: go run ./magefiles/core dev:verifyVendor

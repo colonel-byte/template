@@ -1,0 +1,128 @@
+# Copyright 2026 colonel-byte
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+version: 2
+
+builds:
+  - id: <project>
+    main: ./cmd/<project>
+    binary: <project>
+    # The version and commit the binary reports. The symbol path has to match the variables
+    # the code actually declares - `go doc <module>/config` rather than a guess, because a
+    # `-X` naming a symbol that does not exist is silently ignored and the binary reports the
+    # zero value.
+    ldflags:
+      - -s
+      - -w
+      - -X github.com/OWNER/REPO/config.CLIVersion={{ .Version }}
+      - -X github.com/OWNER/REPO/config.CLICommit={{ .ShortCommit }}
+    gcflags:
+      - all=-l
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - arm64
+      - amd64
+    goamd64:
+      - v1
+    flags:
+      - -trimpath
+    mod_timestamp: "{{ .CommitTimestamp }}"
+
+archives:
+  # Pinned to the one build by id. Without `ids`, every build lands in this archive, and a
+  # second build added later would quietly gain a second binary in the same tarball.
+  - id: <project>
+    ids:
+      - <project>
+    formats:
+      - tar.gz
+    # this name template makes the OS and Arch compatible with the results of `uname`.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else }}{{ .Arch }}{{ end }}
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+
+checksum:
+  name_template: "checksums.txt"
+
+sboms:
+  - artifacts: archive
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-snapshot"
+
+changelog:
+  sort: asc
+
+# Key-based signing with the keypair whose public half is cosign.pub at the repository root.
+# Both secrets have to be set or goreleaser fails the run - there is no "unsigned if the key
+# is missing" fallback here, deliberately, since a release that is quietly unsigned is worse
+# than one that did not happen.
+signs:
+  - id: checksum
+    cmd: cosign
+    signature: "${artifact}.sigstore.json"
+    args:
+      - "sign-blob"
+      - "--key=env://COSIGN_PRIVATE_KEY"
+      - "--bundle=${signature}"
+      - "${artifact}"
+      - "--yes"
+    artifacts: checksum
+    stdin: "{{ .Env.COSIGN_PASSWORD }}"
+  - id: archive
+    cmd: cosign
+    signature: "${artifact}.sigstore.json"
+    args:
+      - "sign-blob"
+      - "--key=env://COSIGN_PRIVATE_KEY"
+      - "--bundle=${signature}"
+      - "${artifact}"
+      - "--yes"
+    artifacts: archive
+    stdin: "{{ .Env.COSIGN_PASSWORD }}"
+
+release:
+  github:
+    owner: OWNER
+    name: REPO
+  name_template: "v{{ .Version }}"
+  mode: append
+  footer: |-
+    ---
+
+    ### Verify release artifacts with Cosign
+
+    Release archives are signed with [Cosign](https://docs.sigstore.dev/cosign/).
+
+    Find the public key at [`cosign.pub`](https://raw.githubusercontent.com/OWNER/REPO/refs/tags/{{ .Tag }}/cosign.pub)
+
+    Verify a binary archive:
+
+    ```console
+    cosign verify-blob --key cosign.pub --bundle <project>_Linux_x86_64.tar.gz.sigstore.json <project>_Linux_x86_64.tar.gz
+    ```

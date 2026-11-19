@@ -1,0 +1,85 @@
+---
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+  schedule:
+    # Weekly, off the hour: scheduled scans keep the security tab current for
+    # advisories published after a commit landed.
+    - cron: "37 5 * * 1"
+
+permissions:
+  contents: read
+
+# Abort prior jobs in the same workflow / PR
+concurrency:
+  group: codeql-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Go is built rather than scanned buildless, so the build step below
+          # is what decides which packages get extracted.
+          - language: go
+            build-mode: manual
+          - language: actions
+            build-mode: none
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup golang
+        if: matrix.build-mode == 'manual'
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+
+      # The package patterns are spelled out instead of ./... for one reason, and
+      # CodeQL's `paths-ignore` cannot fix it -- that setting does not apply to Go,
+      # which is analyzed by building it, so the exclusions have to live here.
+      #
+      # magefiles/*.go is package main behind //go:build mage, and mage supplies the
+      # main function at runtime, so `go build` cannot compile it at all -- with or
+      # without -tags mage. Everything under magefiles/pkg/ is ordinary Go, so that
+      # is what gets named.
+      #
+      # TEMPLATE: widen this as the repository gains packages -- `./cmd/...`,
+      # `./internal/...`, `./pkg/...`, and `.` for a root package. Add them one at a
+      # time: a pattern matching no package fails the build step, and `./...` picks
+      # up magefiles/ and fails for the reason above.
+      - name: Build
+        if: matrix.build-mode == 'manual'
+        run: go build -mod=vendor ./magefiles/pkg/...
+        env:
+          CGO_ENABLED: 0
+          # Everything the build needs is vendored, so make any accidental
+          # network access fail fast.
+          GOFLAGS: -mod=vendor
+          GOPROXY: "off"
+          GOSUMDB: "off"
+          GOTOOLCHAIN: local
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: "/language:${{ matrix.language }}"

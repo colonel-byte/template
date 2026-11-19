@@ -1,0 +1,108 @@
+---
+# The hooks every repository in this organization runs. `prek run --all-files` is what the
+# "Committing changes" section of AGENTS.md tells you to run before every commit; `prek` and
+# `pre-commit` read this same file.
+#
+# TEMPLATE: two more hook repos belong here once the repository has something for them to read,
+# and each is left out rather than commented out because a hook that fails on an empty
+# repository teaches people to reach for --no-verify:
+#
+#   - hadolint-docker, from github.com/hadolint/hadolint, once there is a Dockerfile. Add a
+#     matching `containers` job to .github/workflows/scan-lint.yaml, one matrix entry per
+#     Dockerfile - hadolint's action takes a single path, and its recursive mode globs from the
+#     repository root, which drags in the vendored Dockerfiles under vendor/.
+#   - ruff-check, from github.com/astral-sh/ruff-pre-commit, once there is Python. Errors only
+#     -- `--select=F,E9` -- and deliberately not the formatter.
+#
+# Several of the hooks below rewrite files, so re-stage after a run.
+#
+# vendor/ is excluded from every hook that reads file contents. It is not this repository's
+# code, `go mod vendor` rewrites it wholesale, and a hook that reformats a vendored file makes
+# the next vendor run look like a change nobody made.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        exclude: vendor/.*
+        args:
+          - "--maxkb=1024"
+      - id: check-merge-conflict
+      - id: detect-aws-credentials
+        exclude: vendor/.*
+        args:
+          - "--allow-missing-credentials"
+      - id: fix-byte-order-marker
+        exclude: vendor/.*
+      - id: end-of-file-fixer
+        exclude: vendor/.*
+      - id: trailing-whitespace
+        args:
+          - --markdown-linebreak-ext=md
+        exclude: vendor/.*
+  - repo: https://github.com/sirosen/texthooks
+    rev: 1.0.0
+    hooks:
+      - id: fix-smartquotes
+        exclude: vendor/.*
+  - repo: https://github.com/google/addlicense
+    rev: v1.2.0
+    hooks:
+      # YAML and Markdown are excluded by type rather than by path: a license header in a
+      # Markdown page renders as page content, and in a YAML file it is noise at the top of
+      # every config an operator reads.
+      - id: addlicense
+        exclude: vendor/.*
+        exclude_types:
+          - yaml
+          - markdown
+        args:
+          - -c
+          - colonel-byte
+          - -l
+          - apache
+          - -y
+          - "2026"
+  - repo: https://github.com/google/keep-sorted
+    rev: v0.11.0
+    hooks:
+      - id: keep-sorted
+  # This `rev` is also the version CI lints with: .github/workflows/scan-lint.yaml reads it out
+  # of this file rather than pinning its own, so the two cannot drift. Renovate's pre-commit
+  # manager bumps it here; nothing updates a second pin inside a workflow's `with:` block.
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v2.15.0
+    hooks:
+      - id: golangci-lint
+        language_version: "1.27.4"
+        exclude: vendor/.*
+      - id: golangci-lint-config-verify
+        language_version: "1.27.4"
+        exclude: vendor/.*
+  - repo: local
+    hooks:
+      # go run ./magefiles/core rather than mage: same targets, but it builds from vendor/ and
+      # needs no mage binary installed.
+      - id: docs-generator
+        name: generate-docs
+        language: system
+        pass_filenames: false
+        entry: go run ./magefiles/core generate:document
+      # Runs over the whole tree, but only when a Markdown file changed: it reports a table a
+      # commit did not touch as readily as one it did, and it has to run after docs-generator
+      # so that a page that generator just rewrote is the one being checked.
+      - id: markdown-table-padding
+        name: check-table-padding
+        language: system
+        pass_filenames: false
+        files: \.md$
+        exclude: vendor/.*
+        entry: go run ./magefiles/core dev:checkTables
+      # A dependency added without re-vendoring builds fine here and fails on a machine with
+      # no network, which is the one place it matters. Catch it at commit time instead.
+      - id: verify-vendor
+        name: verify-vendor
+        language: system
+        pass_filenames: false
+        files: ^(go\.mod|go\.sum|vendor/.*)$
+        entry: go run ./magefiles/core dev:verifyVendor

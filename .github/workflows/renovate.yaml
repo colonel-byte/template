@@ -1,0 +1,76 @@
+---
+name: Renovate
+
+on:
+  schedule:
+    # Self-hosted Renovate only looks at the repository when this fires, so this cron is
+    # the whole schedule - .github/renovate.json5 sets no `schedule` of its own. If one is
+    # added there, this has to fire at least as often as that window is open, or the window
+    # is a no-op outside the few minutes this workflow happens to run.
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: Renovate log level
+        type: choice
+        default: info
+        options:
+          - info
+          - debug
+      dryRun:
+        description: Resolve updates and log them without opening anything
+        type: boolean
+        default: false
+  # Renovate re-reads its config and refreshes the dependency dashboard when the config
+  # itself lands, rather than waiting for the next scheduled run.
+  push:
+    branches:
+      - main
+    paths:
+      - .github/renovate.json5
+      - .github/workflows/renovate.yaml
+
+# No write anywhere: Renovate is handed the app token minted below and does every write
+# with that, so GITHUB_TOKEN is only along for the ride.
+permissions:
+  contents: read
+
+concurrency:
+  group: renovate
+  cancel-in-progress: false
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      # The same app as release-please. Its installation token is what opens the branches
+      # and pull requests, so the app needs, at minimum: Contents write, Pull requests
+      # write, Issues write for the dependency dashboard, and Workflows write - without
+      # that last one GitHub refuses any change to a file under .github/workflows/, so
+      # every action-pin update fails while every other update succeeds.
+      #
+      # This also changes who the author is. The hosted app opens pull requests as
+      # `renovate[bot]`; self-hosted under this app they are opened as the app's own bot,
+      # `${{ steps.app-token.outputs.app-slug }}[bot]`. Any workflow gating on the author -
+      # a post-processing hook with `if: github.actor == 'renovate[bot]'`, a commitlint
+      # config selected by author, a CODEOWNERS exemption - has to be told the new name, and
+      # fails by silently never running rather than by erroring.
+      - name: Get Renovate token
+        id: app-token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ secrets.RELEASE_PLEASE_GITHUB_APP_ID }}
+          private-key: ${{ secrets.RELEASE_PLEASE_GITHUB_APP_SECRET }}
+
+      - name: Run Renovate
+        uses: renovatebot/github-action@acdd6bda8b035c99ce59d5675816af2aa65a1774 # v46.3.14
+        with:
+          # Sets RENOVATE_TOKEN. An installation token is minted per run and expires in an
+          # hour, which is why this is a step rather than a long-lived secret.
+          token: ${{ steps.app-token.outputs.token }}
+        env:
+          # This repository only. Autodiscovery would walk every repository the app is
+          # installed on, which is not what a per-repository workflow should do.
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_DRY_RUN: ${{ inputs.dryRun == true && 'full' || '' }}
+          LOG_LEVEL: ${{ inputs.logLevel || 'info' }}

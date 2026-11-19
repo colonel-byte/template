@@ -1,0 +1,22 @@
+# Everything a generator writes is marked linguist-generated, which collapses it in a GitHub
+# diff and keeps it out of the repository's language statistics. Patterns are grouped by the
+# thing that writes them, with that thing named in a comment, so this file reads as a list of
+# what each generator owns. See the "Keeping `.gitattributes` in sync with the generators"
+# section of AGENTS.md before adding or removing one.
+
+# mage dev:vendor
+# The whole tree: `go mod vendor` writes all of it, and none of it is this repository's work.
+vendor/** linguist-generated
+
+# mage generate:document
+# docs/index.md and docs/security.md are copies of README.md and .github/SECURITY.md with their
+# links rebased; docs/SUMMARY.md is compiled from the docs/ tree. The sources are hand-written
+# and stay unmarked - mark what the generator writes, not what it reads.
+docs/index.md linguist-generated
+docs/security.md linguist-generated
+docs/SUMMARY.md linguist-generated
+
+# TEMPLATE: a generator added under magefiles/pkg/gen/ gets its output path listed here in the
+# same change. Check a specific file rather than reasoning about the patterns:
+#
+#   git check-attr linguist-generated -- docs/index.md

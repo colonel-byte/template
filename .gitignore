@@ -1,0 +1,46 @@
+# Build output. `go build ./magefiles/core` drops a `core` binary at the repository root,
+# which is easy to commit by accident and indistinguishable from a crash dump by name.
+#
+# Every pattern below that names a directory or a build artifact is anchored with a leading
+# `/`, so it matches at the repository root and nowhere else. That matters more than it looks:
+# see the vendor/ note at the bottom.
+/core
+/bin/
+/dist/
+
+# `npm ci` in .github/commitlint, which the PR Title Check workflow and nothing else runs.
+# The lockfile is committed; what it installs is not.
+/.github/commitlint/node_modules/
+
+# mdbook build output.
+/book/
+
+# Go test and coverage artifacts.
+/coverage.out
+
+# Editor and tooling state.
+.DS_Store
+.direnv/
+.idea/
+
+# vendor/ is committed, because the build has to work with no network - see the "The build is
+# vendored and offline" section of AGENTS.md. Keeping it committed takes more than just not
+# ignoring it, and this is the part that goes wrong silently:
+#
+# `go mod vendor` writes whatever the dependencies ship, which includes files matching patterns
+# written for this repository's own output. An unanchored `dist/`, `bin/`, `*.out` or `*.tar.gz`
+# matches at every depth, so it swallows a vendored package's files too. Nothing reports it:
+# the tree builds locally because the files are on disk, and fails after a fresh clone because
+# they were never committed.
+#
+# Two defences, and both are needed:
+#
+#   1. Anchor the patterns above with a leading `/`, so they cannot reach into vendor/.
+#   2. The negation below, which must be the LAST line that matches anything under vendor/.
+#      Git takes the last matching pattern, so a negation placed above the patterns it is meant
+#      to override does nothing at all.
+#
+# Note the `/**`. A bare `!/vendor/` un-ignores the directory entry and leaves every file
+# inside it to be matched against the patterns above, which is no protection whatsoever -
+# verified by staging a vendored `dist/a.js` against both forms.
+!/vendor/**

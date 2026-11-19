@@ -1,0 +1,40 @@
+---
+name: Validate pre-commit hooks
+
+on:
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  prek:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # The `repo: local` hooks are `language: system` and shell out to the Go toolchain, so
+      # Go has to be on PATH before prek runs or they fail as "command not found".
+      - name: Setup golang
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+
+      # Runs the hooks from .pre-commit-config.yaml, so licensing, formatting and sorting can
+      # never drift from the local pre-commit setup. Skipped:
+      #   docs-generator - a `repo: local` hook that regenerates files rather than checking
+      #     them, so in CI it would report a diff it created itself.
+      #   golangci-lint - already covered by the Validate Lint workflow, at the same pinned
+      #     version, and running it twice doubles the slowest job in the matrix.
+      #
+      # markdown-table-padding and verify-vendor are deliberately NOT skipped: both are checks
+      # rather than rewrites, and neither is covered anywhere else.
+      - name: Run hooks
+        uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1.0
+        with:
+          extra-args: >-
+            --all-files
+            --skip docs-generator
+            --skip golangci-lint

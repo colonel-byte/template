@@ -1,0 +1,43 @@
+# Security Policy
+
+## Supported versions
+
+This project is pre-1.0 and releases from `main` on every conventional commit that warrants one, so fixes land in a new minor release rather than being backported. Only the most recent release line receives security fixes; upgrade before reporting an issue against an older tag.
+
+| Version               | Supported |
+| --------------------- | --------- |
+| Latest `v0.x` release | Yes       |
+| Any earlier release   | No        |
+
+## Reporting a vulnerability
+
+Report privately through GitHub: **[open a draft advisory](https://github.com/OWNER/REPO/security/advisories/new)**. Do not open a public issue, and do not include a working exploit against a third party's system.
+
+You should expect an acknowledgement within 3 business days and an assessment -- whether we consider it a vulnerability, and the severity we assign -- within 10 business days. Confirmed issues are fixed in the next release, and we aim to publish the advisory within 90 days of the report, sooner when a fix is already out. You will be credited in the advisory unless you ask not to be.
+
+Include the version you are running, the host OS, the commands that reproduce the behaviour, and what an attacker gains.
+
+## Scope
+
+<!-- TEMPLATE: both lists are the point of this file, and a generic version of either is worse than none. Say what an attacker would have to compromise to matter here, and name the trust boundary the project actually defends. The entries below are the shape, not the content. -->
+
+In scope: the released binary and the packages under the module root; the signing and verification path; credential handling; and the release workflow and the artifacts it publishes.
+
+Out of scope: vulnerabilities in upstream components this project packages or depends on -- report those to the project that owns them; anything that requires an attacker to already have root on the machine this runs from, which by design holds its credentials; resource exhaustion from deliberately malformed input supplied by the operator themselves; and misconfiguration of a user's own environment.
+
+## Verifying a release
+
+Release archives and `checksums.txt` are signed with cosign using the key whose public half is [`cosign.pub`](https://github.com/OWNER/REPO/blob/main/cosign.pub) in this repository, and archives ship with an SBOM.
+
+```console
+cosign verify-blob --key cosign.pub --bundle checksums.txt.sigstore.json checksums.txt
+```
+
+See [the GoReleaser reference](../docs/workflows/release.md) for the full set of published artifacts.
+
+## Security in CI
+
+Pull requests and `main` are scanned by CodeQL, dependencies are updated by Renovate, and supply-chain practices are scored weekly by OpenSSF Scorecard. Results appear in the repository's Security tab.
+
+
+<!-- TEMPLATE: where a check is knowingly scored down -- a vendored tree, a generated artifact, a pinned base image -- say so here and link the record that explains why. A reader comparing the badge against this page should not have to guess. -->

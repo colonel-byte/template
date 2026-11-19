@@ -1,0 +1,77 @@
+name: Bug report
+description: The project does something other than what it should.
+title: "fix: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Do not report a vulnerability here. Open a draft advisory instead - the link is on the issue chooser.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened
+      description: What you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: The commands you ran, in order. Include the config or the relevant part of it.
+      placeholder: |
+        1. <project> create ./config.yaml
+        2. <project> apply --inventory ./inventory.yaml
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which command group or subsystem
+      # Keep this list in step with the command tree.
+      options:
+        - <command group one>
+        - <command group two>
+        - Configuration and schemas
+        - Not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: How were you driving it
+      description: The same code runs behind more than one surface, and a bug is often in only one of them.
+      options:
+        - The CLI
+        - As a library
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Error output
+      description: The shortest decisive part of the output. Redact hostnames, tokens, and credentials.
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: Output of the `version` command
+      placeholder: v0.0.0 (commit 1da789cd)
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Host OS and architecture, and anything unusual about the network or the host's isolation.
+      placeholder: |
+        Host OS: Fedora 44, x86_64
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else
+      description: A workaround you found, the last version that worked, or an upstream issue you think is behind it.
