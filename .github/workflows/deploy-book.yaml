@@ -1,0 +1,48 @@
+---
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+# Abort prior jobs in the same workflow / PR
+concurrency:
+  group: github-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    # actions-gh-pages pushes the built book to the gh-pages branch, which is the only write
+    # this workflow makes. Nothing here touches a pull request.
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      # fetch-depth: 0 so that mdBook's git-dependent output - the per-page edit link and
+      # last-modified data - resolves against real history rather than a shallow clone.
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2.0.0
+        with:
+          mdbook-version: "latest"
+
+      # This builds whatever docs/ holds at this commit; it does not regenerate anything.
+      # docs/index.md, docs/security.md and docs/SUMMARY.md are committed generator output,
+      # so a page that was not regenerated before merging is published stale rather than
+      # rebuilt here - which is what the docs-generator pre-commit hook is for.
+      - name: Build website
+        run: mdbook build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book

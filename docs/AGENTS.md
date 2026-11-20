@@ -29,6 +29,8 @@ Not this:
 
 Adding a row that is wider than the column repads the whole table, which is expected - the alignment is part of the content, not a one-time cleanup.
 
+`go run ./magefiles/core dev:checkTables` enforces this, and prints the expected form of every line it rejects - so the fix is its own output rather than counting spaces by hand. **It only sees tracked files**, because it walks `git ls-files` rather than the filesystem: a brand-new page is invisible to it, and to the pre-commit hook that runs it, until the file has been `git add`ed. A clean run on a change that adds a document means nothing until then.
+
 ## A moved page keeps a redirect
 
 Every page under `docs/` is published at `https://OWNER.github.io/REPO/<path>.html`, so renaming or moving one breaks whatever already links to it from outside this repository -- a bookmark, an older release's manifest, a third-party listing. mdBook does not notice: the old URL simply 404s.

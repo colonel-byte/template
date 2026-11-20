@@ -27,6 +27,8 @@ edit-url-template    = "https://github.com/OWNER/REPO/edit/main/{path}"
 
 Also in `book.toml`: `[book] authors` and the copyright header, which are the template author's, not necessarily this project's.
 
+**The placeholders are only half of it.** Generating a repository from a template copies files, not settings, so several of the files that just arrived are inert: `.github/CODEOWNERS` requires nothing until a ruleset says so, the workflows have no secrets, the labels the issue forms name do not exist, and the book 404s until Pages is enabled. [`docs/dev/new-repo-checklist.md`](docs/dev/new-repo-checklist.md) is the list, with the `gh` commands for the parts that can be scripted and the order to do the first run in.
+
 Then work through the `<!-- ... -->` comments in this file. They mark the five things that cannot be templated - what the project is, the layout table, the build and test commands, which test invocations are forbidden, and the quirks worth knowing - and a rule left as a comment is a rule nobody follows. Delete the sections whose machinery this repository does not have, rather than leaving them pointing at files that are not there; [`README.md`](README.md) lists which sections depend on what.
 
 Delete this whole section once it is done.

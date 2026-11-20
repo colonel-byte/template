@@ -9,34 +9,35 @@ The agent rules and GitHub templates every repository in this organization start
 
 ## What is here
 
-| Path                                | What it is                                                                                    |
-| ----------------------------------- | --------------------------------------------------------------------------------------------- |
-| `AGENTS.md`                         | The root rules an agent loads at the start of a session. `CLAUDE.md` is a symlink to it       |
-| `docs/AGENTS.md`                    | Markdown formatting, mdBook redirects, release-please annotations, generated pages            |
-| `.github/AGENTS.md`                 | Scorecard-safe workflow changes, issue-form upkeep, the pull request description format       |
-| `.github/pull_request_template.md`  | The three headings every pull request body keeps                                              |
-| `.github/ISSUE_TEMPLATE/`           | Six YAML issue forms plus the chooser config                                                  |
-| `docs/css/`                         | The mdBook stylesheets - `root.css` for the site, `print.css` for the single-page print view  |
-| `.github/renovate.json5`            | Renovate config, in the house shape - digest pinning, grouped updates, custom regex pins      |
-| `.github/workflows/renovate.yaml`   | Self-hosted Renovate, with the release-please app's credentials                               |
-| `release-please-config.json`        | Versioning and changelog sections. `.release-please-manifest.json` holds the version itself   |
-| `.goreleaser.yaml`                  | One build, archives, checksums, SBOMs, cosign signing. No packages or images                  |
-| `.github/workflows/`                | `release-please.yaml` opens the release PR; `release.yaml` builds on the tag it pushes        |
-| `.github/workflows/scorecard.yaml`  | OpenSSF Scorecard on `main`, weekly, and on branch-protection changes. Feeds the badge        |
-| `.github/workflows/commitlint.yaml` | PR title linting, with the pinned commitlint in `.github/commitlint/`                         |
-| `.github/workflows/pre-commit.yaml` | The hooks, over the whole tree, so a local skip cannot hide                                   |
-| `.github/workflows/scan-lint.yaml`  | golangci-lint at the version `.pre-commit-config.yaml` pins, read out of it                   |
-| `.github/workflows/codeql.yaml`     | CodeQL for `go` and `actions`, weekly and per pull request                                    |
-| `.golangci.yaml`                    | The house linter set. `magefiles/*.go` excluded - the build tag makes it uncompilable         |
-| `.github/SECURITY.md`               | Security policy. The two `TEMPLATE:` blocks in it are the scope lists, which must be written  |
-| `.github/CODEOWNERS`                | Review from `@colonel-byte/maintainers` on every change                                       |
-| `.gitattributes`                    | What each generator owns, grouped by the target that writes it                                |
-| `.pre-commit-config.yaml`           | The org-standard hooks, plus three `local` ones that call mage. Three more are named in it    |
-| `magefiles/`                        | A thin task runner - `generate:document`, `dev:checkTables`, `dev:vendor`, `dev:verifyVendor` |
-| `go.mod`, `go.sum`, `vendor/`       | The vendored, offline build. `mage` and `testify` only                                        |
-| `.gitignore`                        | Build output and `node_modules/`. `vendor/` is deliberately not in it                         |
-| `docs/{guides,dev,agent}/`          | A `README.md` each, saying what belongs in that directory and what does not                   |
-| `docs/workflows/`                   | One page per workflow, which `.github/AGENTS.md` requires                                     |
+| Path                                 | What it is                                                                                    |
+| ------------------------------------ | --------------------------------------------------------------------------------------------- |
+| `AGENTS.md`                          | The root rules an agent loads at the start of a session. `CLAUDE.md` is a symlink to it       |
+| `docs/AGENTS.md`                     | Markdown formatting, mdBook redirects, release-please annotations, generated pages            |
+| `.github/AGENTS.md`                  | Scorecard-safe workflow changes, issue-form upkeep, the pull request description format       |
+| `.github/pull_request_template.md`   | The three headings every pull request body keeps                                              |
+| `.github/ISSUE_TEMPLATE/`            | Six YAML issue forms plus the chooser config                                                  |
+| `docs/css/`                          | The mdBook stylesheets - `root.css` for the site, `print.css` for the single-page print view  |
+| `.github/renovate.json5`             | Renovate config, in the house shape - digest pinning, grouped updates, custom regex pins      |
+| `.github/workflows/renovate.yaml`    | Self-hosted Renovate, with the release-please app's credentials                               |
+| `release-please-config.json`         | Versioning and changelog sections. `.release-please-manifest.json` holds the version itself   |
+| `.goreleaser.yaml`                   | One build, archives, checksums, SBOMs, cosign signing. No packages or images                  |
+| `.github/workflows/`                 | `release-please.yaml` opens the release PR; `release.yaml` builds on the tag it pushes        |
+| `.github/workflows/scorecard.yaml`   | OpenSSF Scorecard on `main`, weekly, and on branch-protection changes. Feeds the badge        |
+| `.github/workflows/commitlint.yaml`  | PR title linting, with the pinned commitlint in `.github/commitlint/`                         |
+| `.github/workflows/pre-commit.yaml`  | The hooks, over the whole tree, so a local skip cannot hide                                   |
+| `.github/workflows/scan-lint.yaml`   | golangci-lint at the version `.pre-commit-config.yaml` pins, read out of it                   |
+| `.github/workflows/codeql.yaml`      | CodeQL for `go` and `actions`, weekly and per pull request                                    |
+| `.golangci.yaml`                     | The house linter set. `magefiles/*.go` excluded - the build tag makes it uncompilable         |
+| `.github/workflows/deploy-book.yaml` | mdBook to `gh-pages` on every push to `main`. Needs Pages enabled, which is a setting         |
+| `.github/SECURITY.md`                | Security policy. The two `TEMPLATE:` blocks in it are the scope lists, which must be written  |
+| `.github/CODEOWNERS`                 | Review from `@colonel-byte/maintainers` on every change                                       |
+| `.gitattributes`                     | What each generator owns, grouped by the target that writes it                                |
+| `.pre-commit-config.yaml`            | The org-standard hooks, plus three `local` ones that call mage. Three more are named in it    |
+| `magefiles/`                         | A thin task runner - `generate:document`, `dev:checkTables`, `dev:vendor`, `dev:verifyVendor` |
+| `go.mod`, `go.sum`, `vendor/`        | The vendored, offline build. `mage` and `testify` only                                        |
+| `.gitignore`                         | Build output and `node_modules/`. `vendor/` is deliberately not in it                         |
+| `docs/{guides,dev,agent}/`           | A `README.md` each, saying what belongs in that directory and what does not                   |
+| `docs/workflows/`                    | One page per workflow, which `.github/AGENTS.md` requires                                     |
 
 ## The task runner, and the offline build
 
@@ -58,7 +59,7 @@ Two files are now generator output rather than hand-written: `docs/SUMMARY.md` (
 
 ## CI
 
-Nine workflows, each with a page under `docs/workflows/`. Five run on every pull request - `Validate Lint`, `Validate pre-commit hooks`, `CodeQL`, `PR Title Check`, `Check for go mod changes` - and the rest fire on a push to `main`, a tag, or a schedule.
+Ten workflows, each with a page under `docs/workflows/`. Five run on every pull request - `Validate Lint`, `Validate pre-commit hooks`, `CodeQL`, `PR Title Check`, `Check for go mod changes` - and the rest fire on a push to `main`, a tag, or a schedule.
 
 **No test workflow ships.** A green test check over a repository with no tests means nothing, and the decisions one encodes - which packages, `-short` or not, which backend provisions the fixture - are not templatable. [`docs/dev/adding-ci.md`](dev/adding-ci.md) is the note for writing the unit-test and end-to-end workflows, including the three things that change in the same pull request when you do.
 
@@ -93,7 +94,7 @@ Release-please opens one pull request holding the next version and the regenerat
 
 - **Set `package-name` and `extra-files` in `release-please-config.json`.** `extra-files` starts empty, and a page pinning this project's own version has to be listed there *and* annotated in place or it goes stale silently.
 - **Check the `-ldflags -X` symbol paths in `.goreleaser.yaml` against the code.** A `-X` naming a variable that does not exist is ignored without complaint, and the binary reports no version.
-- **`COSIGN_PRIVATE_KEY` and `COSIGN_PASSWORD` are required**, since `cosign.pub` at the root is the published half of that keypair. There is no unsigned fallback.
+- **The `COSIGN_KEY` and `COSIGN_PASS` secrets are required**, since `cosign.pub` at the root is the published half of that keypair. There is no unsigned fallback. The workflow maps them onto `COSIGN_PRIVATE_KEY` and `COSIGN_PASSWORD`, which are cosign's own variable names.
 - **Leave `.release-please-manifest.json` and `CHANGELOG.md` alone.** Release-please owns both and rewrites them wholesale.
 
 ## Renovate
@@ -116,6 +117,8 @@ additional-css = [ "docs/css/root.css", "docs/css/print.css" ]
 `print.css` carries two blocks keyed on mdBook heading slugs, marked `TEMPLATE:` in the file: one shrinks the generated reference chapters, the other drops the developer-facing tail from the print page. Both match on an ID, so a wrong slug matches nothing and reports nothing. Build the book, open the print page, and read the real IDs off the headings before editing them - or delete both blocks, which leaves the rest of the print styling working.
 
 ## Filling it in
+
+Generating a repository from this template copies **files, not settings** — so `.github/CODEOWNERS` requires nothing until a ruleset says so, the workflows have no secrets, the labels the issue forms name do not exist, and the book 404s until Pages is enabled. [`docs/dev/new-repo-checklist.md`](dev/new-repo-checklist.md) is the list, with the `gh` commands for the scriptable parts and the order to do the first run in. The placeholder sweep below comes first.
 
 Two placeholders appear throughout. Replace both before the first commit in a new repository:
 

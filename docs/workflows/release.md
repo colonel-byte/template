@@ -11,10 +11,12 @@ What it produces, from [`.goreleaser.yaml`](https://github.com/OWNER/REPO/blob/m
 
 ## What it needs
 
-| Secret               | What it is                                                            |
-| -------------------- | --------------------------------------------------------------------- |
-| `COSIGN_PRIVATE_KEY` | The private half of the keypair published as `cosign.pub` at the root |
-| `COSIGN_PASSWORD`    | That key's password                                                   |
+| Secret        | What it is                                                            |
+| ------------- | --------------------------------------------------------------------- |
+| `COSIGN_KEY`  | The private half of the keypair published as `cosign.pub` at the root |
+| `COSIGN_PASS` | That key's password                                                   |
+
+Those are the **secret** names. The workflow maps them onto the environment variables `.goreleaser.yaml` reads, `COSIGN_PRIVATE_KEY` and `COSIGN_PASSWORD`, which are cosign's own and are not renameable. Changing one side without the other produces an unsigned-key error at the signing step, not a missing-secret error.
 
 Both are required. The `signs:` blocks have no "unsigned if the key is missing" fallback, deliberately - a release that is quietly unsigned is worse than one that did not happen - so a missing secret fails the run rather than producing unsigned archives.
 
