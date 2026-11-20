@@ -12,6 +12,11 @@
     "@A1994SC",
   ],
 
+  // PR titles must pass the conventional-commit lint in .github/workflows/commitlint.yaml.
+  // config:recommended only auto-detects this from recent commit history, so state it:
+  // every Renovate PR title is `chore(deps): ...`, regardless of what history looks like.
+  semanticCommits: "enabled",
+
   ignoreUnstable: false,
   separateMajorMinor: false,
   dependencyDashboard: {
