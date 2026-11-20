@@ -18,7 +18,7 @@ jobs:
       # The `repo: local` hooks are `language: system` and shell out to the Go toolchain, so
       # Go has to be on PATH before prek runs or they fail as "command not found".
       - name: Setup golang
-        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
         with:
           go-version-file: go.mod
 
@@ -32,7 +32,7 @@ jobs:
       # markdown-table-padding and verify-vendor are deliberately NOT skipped: both are checks
       # rather than rewrites, and neither is covered anywhere else.
       - name: Run hooks
-        uses: j178/prek-action@44924fe9ef4a6f88253c4b6b1bf11c689d3ce53d # v3.1.0
+        uses: j178/prek-action@7b101f8338a08d2bd6fdb3625e4e7692428763a3 # v3.1.1
         with:
           extra-args: >-
             --all-files
