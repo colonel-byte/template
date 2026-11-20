@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>readme</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="docs/css/root-cbd6b073.css">
+        <link rel="stylesheet" href="docs/css/print-13078dec.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-37f0680d.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-f6f71e9d.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/OWNER/REPO/tree/main" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/OWNER/REPO/edit/main/docs/index.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <!-- Page generated by mage; DO NOT EDIT -->
+<h1 id="colonel-byte-repository-template"><a class="header" href="#colonel-byte-repository-template">colonel-byte repository template</a></h1>
+<p><a href="https://github.com/OWNER/REPO/releases"><img src="https://img.shields.io/github/v/release/OWNER/REPO" alt="Latest Release"></a>
+<a href="https://github.com/OWNER/REPO/actions/workflows/release.yaml"><img src="https://img.shields.io/github/actions/workflow/status/OWNER/REPO/release.yaml" alt="Build Status"></a>
+<a href="https://securityscorecards.dev/viewer/?uri=github.com/OWNER/REPO"><img src="https://api.scorecard.dev/projects/github.com/OWNER/REPO/badge" alt="OpenSSF Scorecard"></a></p>
+<p>The agent rules and GitHub templates every repository in this organization starts from. Nothing here is project-specific: the cargoship-only sections have been dropped and the names that remain are placeholders.</p>
+<h2 id="what-is-here"><a class="header" href="#what-is-here">What is here</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Path</th><th>What it is</th></tr>
+</thead>
+<tbody>
+<tr><td><code>AGENTS.md</code></td><td>The root rules an agent loads at the start of a session. <code>CLAUDE.md</code> is a symlink to it</td></tr>
+<tr><td><code>docs/AGENTS.md</code></td><td>Markdown formatting, mdBook redirects, release-please annotations, generated pages</td></tr>
+<tr><td><code>.github/AGENTS.md</code></td><td>Scorecard-safe workflow changes, issue-form upkeep, the pull request description format</td></tr>
+<tr><td><code>.github/pull_request_template.md</code></td><td>The three headings every pull request body keeps</td></tr>
+<tr><td><code>.github/ISSUE_TEMPLATE/</code></td><td>Six YAML issue forms plus the chooser config</td></tr>
+<tr><td><code>docs/css/</code></td><td>The mdBook stylesheets - <code>root.css</code> for the site, <code>print.css</code> for the single-page print view</td></tr>
+<tr><td><code>.github/renovate.json5</code></td><td>Renovate config, in the house shape - digest pinning, grouped updates, custom regex pins</td></tr>
+<tr><td><code>.github/workflows/renovate.yaml</code></td><td>Self-hosted Renovate, with the release-please app’s credentials</td></tr>
+<tr><td><code>release-please-config.json</code></td><td>Versioning and changelog sections. <code>.release-please-manifest.json</code> holds the version itself</td></tr>
+<tr><td><code>.goreleaser.yaml</code></td><td>One build, archives, checksums, SBOMs, cosign signing. No packages or images</td></tr>
+<tr><td><code>.github/workflows/</code></td><td><code>release-please.yaml</code> opens the release PR; <code>release.yaml</code> builds on the tag it pushes</td></tr>
+<tr><td><code>.github/workflows/scorecard.yaml</code></td><td>OpenSSF Scorecard on <code>main</code>, weekly, and on branch-protection changes. Feeds the badge</td></tr>
+<tr><td><code>.github/workflows/commitlint.yaml</code></td><td>PR title linting, with the pinned commitlint in <code>.github/commitlint/</code></td></tr>
+<tr><td><code>.github/workflows/pre-commit.yaml</code></td><td>The hooks, over the whole tree, so a local skip cannot hide</td></tr>
+<tr><td><code>.github/workflows/scan-lint.yaml</code></td><td>golangci-lint at the version <code>.pre-commit-config.yaml</code> pins, read out of it</td></tr>
+<tr><td><code>.github/workflows/codeql.yaml</code></td><td>CodeQL for <code>go</code> and <code>actions</code>, weekly and per pull request</td></tr>
+<tr><td><code>.golangci.yaml</code></td><td>The house linter set. <code>magefiles/*.go</code> excluded - the build tag makes it uncompilable</td></tr>
+<tr><td><code>.github/workflows/deploy-book.yaml</code></td><td>mdBook to <code>gh-pages</code> on every push to <code>main</code>. Needs Pages enabled, which is a setting</td></tr>
+<tr><td><code>.github/SECURITY.md</code></td><td>Security policy. The two <code>TEMPLATE:</code> blocks in it are the scope lists, which must be written</td></tr>
+<tr><td><code>.github/CODEOWNERS</code></td><td>Review from <code>@colonel-byte/maintainers</code> on every change</td></tr>
+<tr><td><code>.gitattributes</code></td><td>What each generator owns, grouped by the target that writes it</td></tr>
+<tr><td><code>.pre-commit-config.yaml</code></td><td>The org-standard hooks, plus three <code>local</code> ones that call mage. Three more are named in it</td></tr>
+<tr><td><code>magefiles/</code></td><td>A thin task runner - <code>generate:document</code>, <code>dev:checkTables</code>, <code>dev:vendor</code>, <code>dev:verifyVendor</code></td></tr>
+<tr><td><code>go.mod</code>, <code>go.sum</code>, <code>vendor/</code></td><td>The vendored, offline build. <code>mage</code> and <code>testify</code> only</td></tr>
+<tr><td><code>.gitignore</code></td><td>Build output and <code>node_modules/</code>. <code>vendor/</code> is deliberately not in it</td></tr>
+<tr><td><code>docs/{guides,dev,agent}/</code></td><td>A <code>README.md</code> each, saying what belongs in that directory and what does not</td></tr>
+<tr><td><code>docs/workflows/</code></td><td>One page per workflow, which <code>.github/AGENTS.md</code> requires</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="the-task-runner-and-the-offline-build"><a class="header" href="#the-task-runner-and-the-offline-build">The task runner, and the offline build</a></h2>
+<p><code>magefiles/</code> is a thin version of cargoship’s: four targets, <code>mage</code> and <code>testify</code> as the only dependencies, no distro or packaging generators. It exists because about ten rules across <code>AGENTS.md</code>, <code>docs/AGENTS.md</code> and <code>.github/AGENTS.md</code> describe maintaining generated output and defer to a task runner, and the “Pinned versions” section defers entirely to <code>magefiles/AGENTS.md</code>.</p>
+<pre><code class="language-sh">go run ./magefiles/core -l                  # list every target
+go run ./magefiles/core generate:document   # docs/index.md, docs/security.md, docs/SUMMARY.md
+go run ./magefiles/core dev:checkTables     # the Markdown table padding rule, enforced
+go run ./magefiles/core dev:vendor          # go mod tidy, then go mod vendor
+go run ./magefiles/core dev:verifyVendor    # go mod verify, then a GOPROXY=off build
+</code></pre>
+<p>Three of those are wired into <code>.pre-commit-config.yaml</code> as <code>local</code> hooks, so the generated pages, the table padding, and <code>vendor/</code> are checked at commit time rather than discovered in CI.</p>
+<p><strong>The build is vendored and offline by requirement, not by habit.</strong> <code>vendor/</code> is committed, the Go toolchain picks <code>-mod=vendor</code> automatically when it is present, and <code>dev:verifyVendor</code> builds with <code>GOPROXY=off</code> to prove a release can be built with no network. A dependency added without re-vendoring builds fine locally and fails only where it matters, so three things catch it: the <code>verify-vendor</code> hook, <code>.github/workflows/check-go-mod.yaml</code> re-running tidy and vendor and failing on any diff, and <code>dev:verifyVendor</code> in that same job.</p>
+<p>Two files are now generator output rather than hand-written: <code>docs/SUMMARY.md</code> (compiled from the <code>docs/</code> tree) and <code>docs/index.md</code> / <code>docs/security.md</code> (copied from <code>README.md</code> and <code>.github/SECURITY.md</code> with links rebased). All are marked <code>linguist-generated</code>. Edit the source, then regenerate.</p>
+<h2 id="ci"><a class="header" href="#ci">CI</a></h2>
+<p>Ten workflows, each with a page under <code>docs/workflows/</code>. Five run on every pull request - <code>Validate Lint</code>, <code>Validate pre-commit hooks</code>, <code>CodeQL</code>, <code>PR Title Check</code>, <code>Check for go mod changes</code> - and the rest fire on a push to <code>main</code>, a tag, or a schedule.</p>
+<p><strong>No test workflow ships.</strong> A green test check over a repository with no tests means nothing, and the decisions one encodes - which packages, <code>-short</code> or not, which backend provisions the fixture - are not templatable. <a href="dev/adding-ci.html"><code>docs/dev/adding-ci.md</code></a> is the note for writing the unit-test and end-to-end workflows, including the three things that change in the same pull request when you do.</p>
+<p>One coupling worth knowing before editing either file: <strong><code>scan-lint.yaml</code> reads the golangci-lint version out of <code>.pre-commit-config.yaml</code></strong> rather than pinning its own. Renovate’s <code>pre-commit</code> manager bumps that <code>rev:</code>; its <code>github-actions</code> manager updates <code>uses:</code> references, not inputs inside a <code>with:</code> block. A second pin in the workflow would be one nothing keeps in step with the first.</p>
+<h2 id="badges"><a class="header" href="#badges">Badges</a></h2>
+<p>The three at the top of this file are the house set, and each one needs something to exist before it resolves:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Badge</th><th>Resolves once</th><th>Fails as</th></tr>
+</thead>
+<tbody>
+<tr><td>Latest Release</td><td>A release has been published, which means <code>release.yaml</code> has run on a tag</td><td><code>no releases</code></td></tr>
+<tr><td>Build Status</td><td><code>.github/workflows/release.yaml</code> exists under that exact filename</td><td><code>no status</code></td></tr>
+<tr><td>OpenSSF Scorecard</td><td>A Scorecard run has published a score for the repository</td><td><code>unknown</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>They carry <code>OWNER/REPO</code> like everything else in the template, so they render as “repo not found” until the bootstrap grep replaces them - which is deliberate, since a badge is the most visible thing on the page and a wrong slug in one silently reports another repository’s health as this one’s.</p>
+<p>Two things to know:</p>
+<ul>
+<li><strong>The Build Status badge is keyed on the workflow filename</strong>, not its <code>name:</code>. Rename <code>release.yaml</code> and the badge goes to <code>no status</code> without anything else breaking.</li>
+<li><strong>The Scorecard badge needs <code>publish_results: true</code> and a public repository.</strong> <code>workflows/scorecard.yaml</code> sets it, but the workflow can otherwise run happily and leave the badge on <code>unknown</code> - see <a href="workflows/scorecard.html"><code>docs/workflows/scorecard.md</code></a>. The first run on <code>main</code> is what fills it in.</li>
+</ul>
+<p>Cargoship carries a fourth, keyed on <code>go-mod/go-version</code>, which this template now has a <code>go.mod</code> for. Add it if you want it:</p>
+<pre><code class="language-markdown">[![Go version](https://img.shields.io/github/go-mod/go-version/OWNER/REPO?filename=go.mod)](https://go.dev/)
+</code></pre>
+<h2 id="releases"><a class="header" href="#releases">Releases</a></h2>
+<p>Release-please opens one pull request holding the next version and the regenerated changelog; merging it pushes a <code>vN.N.N</code> tag, and that tag is what goreleaser fires on. Both are deliberately basic - the cargoship versions also build <code>.deb</code>/<code>.rpm</code>/<code>.apk</code> packages, four container images, and an Ansible collection tarball, none of which is templatable. Read <a href="workflows/release-please.html"><code>docs/workflows/release-please.md</code></a> and <a href="workflows/release.html"><code>docs/workflows/release.md</code></a>, then:</p>
+<ul>
+<li><strong>Set <code>package-name</code> and <code>extra-files</code> in <code>release-please-config.json</code>.</strong> <code>extra-files</code> starts empty, and a page pinning this project’s own version has to be listed there <em>and</em> annotated in place or it goes stale silently.</li>
+<li><strong>Check the <code>-ldflags -X</code> symbol paths in <code>.goreleaser.yaml</code> against the code.</strong> A <code>-X</code> naming a variable that does not exist is ignored without complaint, and the binary reports no version.</li>
+<li><strong>The <code>COSIGN_KEY</code> and <code>COSIGN_PASS</code> secrets are required</strong>, since <code>cosign.pub</code> at the root is the published half of that keypair. There is no unsigned fallback. The workflow maps them onto <code>COSIGN_PRIVATE_KEY</code> and <code>COSIGN_PASSWORD</code>, which are cosign’s own variable names.</li>
+<li><strong>Leave <code>.release-please-manifest.json</code> and <code>CHANGELOG.md</code> alone.</strong> Release-please owns both and rewrites them wholesale.</li>
+</ul>
+<h2 id="renovate"><a class="header" href="#renovate">Renovate</a></h2>
+<p>The workflow runs Renovate itself rather than installing the hosted <code>renovate[bot]</code> app, so the pull requests are opened with the release-please app’s installation token. Read <a href="workflows/renovate.html"><code>docs/workflows/renovate.md</code></a> before enabling it - three things bite:</p>
+<ul>
+<li><strong>The app needs <code>Workflows: write</code></strong>, or every GitHub Actions pin update fails and nothing else does.</li>
+<li><strong>The author is the app’s bot, not <code>renovate[bot]</code>.</strong> Any <code>if: github.actor == 'renovate[bot]'</code> gate, author-selected commitlint config, or bot-pinned commit email stops matching, silently.</li>
+<li><strong><code>automerge</code> is off</strong>, explicitly rather than by default, so a preset added to <code>extends</code> cannot turn it back on. The grouped rules mean one pull request per family, each reviewed and merged by a person.</li>
+</ul>
+<h2 id="wiring-up-docscss"><a class="header" href="#wiring-up-docscss">Wiring up <code>docs/css/</code></a></h2>
+<p>mdBook loads neither file unless <code>book.toml</code> names it, and a stylesheet nothing references fails silently - the book builds and looks untouched. Add both to <code>[output.html]</code>:</p>
+<pre><code class="language-toml">[output.html]
+additional-css = [ "docs/css/root.css", "docs/css/print.css" ]
+</code></pre>
+<p><code>print.css</code> carries two blocks keyed on mdBook heading slugs, marked <code>TEMPLATE:</code> in the file: one shrinks the generated reference chapters, the other drops the developer-facing tail from the print page. Both match on an ID, so a wrong slug matches nothing and reports nothing. Build the book, open the print page, and read the real IDs off the headings before editing them - or delete both blocks, which leaves the rest of the print styling working.</p>
+<h2 id="filling-it-in"><a class="header" href="#filling-it-in">Filling it in</a></h2>
+<p>Generating a repository from this template copies <strong>files, not settings</strong> — so <code>.github/CODEOWNERS</code> requires nothing until a ruleset says so, the workflows have no secrets, the labels the issue forms name do not exist, and the book 404s until Pages is enabled. <a href="dev/new-repo-checklist.html"><code>docs/dev/new-repo-checklist.md</code></a> is the list, with the <code>gh</code> commands for the scriptable parts and the order to do the first run in. The placeholder sweep below comes first.</p>
+<p>Two placeholders appear throughout. Replace both before the first commit in a new repository:</p>
+<pre><code class="language-sh">grep -rn 'OWNER/REPO\|OWNER\.github\.io\|&lt;project&gt;' . --exclude-dir=.git
+</code></pre>
+<ul>
+<li><code>OWNER/REPO</code> - the repository slug, in the issue-tracker section, the Scorecard links, the advisory URL, the <code>gh</code> snippets, and <strong><code>book.toml</code></strong>.</li>
+<li><code>OWNER.github.io</code> - the published book’s host, in <code>docs/AGENTS.md</code> and the issue chooser.</li>
+<li><code>&lt;project&gt;</code> - the binary and module name, in the layout table, the <code>go list -deps</code> example, and the help-text examples.</li>
+</ul>
+<p><code>book.toml</code> is the one to check by eye: <code>git-repository-url</code> and <code>edit-url-template</code> are the repository icon and the per-page edit pencil, and pointed at the wrong slug they build cleanly and send every reader somewhere else. Its <code>[book] authors</code> and copyright header are the template author’s, too.</p>
+<p>The same instructions are repeated as the first section of <code>AGENTS.md</code>, since that is the file an agent loads and this one is not. It ends with “delete this whole section once it is done” - keep the two in step if you edit either.</p>
+<p>Then work through the <code>&lt;!-- ... --&gt;</code> comments in <code>AGENTS.md</code>. They mark the five places that cannot be templated: what the project is, the layout table, the build and test commands, which test invocations are forbidden, and the quirks worth knowing.</p>
+<h2 id="sections-to-delete-when-they-do-not-apply"><a class="header" href="#sections-to-delete-when-they-do-not-apply">Sections to delete when they do not apply</a></h2>
+<p>Several rules in <code>AGENTS.md</code> assume a Cobra CLI with a viper config file, a mage task runner, and an mdBook under <code>docs/</code>. Delete the ones a given repository does not have rather than leaving a rule pointing at machinery that is not there - a rules file whose claims do not check out is the failure mode its own “A doc’s claims are checkable” section exists to prevent.</p>
+<ul>
+<li><strong>A new flag belongs in the config file too</strong> - needs cobra plus viper plus a sample config at the root.</li>
+<li><strong>Help text has a budget</strong> - needs a CLI with <code>--help</code> as a real surface.</li>
+<li><strong>Exit codes are a compatibility promise</strong> - needs <code>cmd/exit.go</code> and a published table.</li>
+<li><strong>Pinned versions, digests, and checksums</strong> - needs <code>magefiles/AGENTS.md</code> to exist, since it defers to it.</li>
+<li><strong>Generated output goes in a pull request of its own</strong> - needs a generator that renders committed artifacts.</li>
+<li><strong><code>docs/AGENTS.md</code></strong> in full - needs mdBook and release-please.</li>
+</ul>
+<h2 id="labels-the-issue-forms-need"><a class="header" href="#labels-the-issue-forms-need">Labels the issue forms need</a></h2>
+<p>GitHub drops an unknown label silently, so create these before the forms are used:</p>
+<pre><code class="language-sh">gh label create bug --repo OWNER/REPO
+gh label create ci --repo OWNER/REPO
+gh label create test-flake --repo OWNER/REPO
+gh label create enhancement --repo OWNER/REPO
+gh label create documentation --repo OWNER/REPO
+gh label create stack-task --repo OWNER/REPO
+</code></pre>
+<p>Renovate names five more in <code>renovate.json5</code>, and drops them just as silently:</p>
+<pre><code class="language-sh">gh label create renovate/oci --repo OWNER/REPO
+gh label create renovate/action --repo OWNER/REPO
+gh label create renovate/gomod --repo OWNER/REPO
+gh label create renovate/pre-commit --repo OWNER/REPO
+gh label create security --repo OWNER/REPO
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="security.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="security.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

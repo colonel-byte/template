@@ -1,0 +1,852 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="docs/css/root-cbd6b073.css">
+        <link rel="stylesheet" href="docs/css/print-13078dec.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-37f0680d.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-f6f71e9d.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/OWNER/REPO/tree/main" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <!-- Page generated by mage; DO NOT EDIT -->
+<h1 id="colonel-byte-repository-template"><a class="header" href="#colonel-byte-repository-template">colonel-byte repository template</a></h1>
+<p><a href="https://github.com/OWNER/REPO/releases"><img src="https://img.shields.io/github/v/release/OWNER/REPO" alt="Latest Release"></a>
+<a href="https://github.com/OWNER/REPO/actions/workflows/release.yaml"><img src="https://img.shields.io/github/actions/workflow/status/OWNER/REPO/release.yaml" alt="Build Status"></a>
+<a href="https://securityscorecards.dev/viewer/?uri=github.com/OWNER/REPO"><img src="https://api.scorecard.dev/projects/github.com/OWNER/REPO/badge" alt="OpenSSF Scorecard"></a></p>
+<p>The agent rules and GitHub templates every repository in this organization starts from. Nothing here is project-specific: the cargoship-only sections have been dropped and the names that remain are placeholders.</p>
+<h2 id="what-is-here"><a class="header" href="#what-is-here">What is here</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Path</th><th>What it is</th></tr>
+</thead>
+<tbody>
+<tr><td><code>AGENTS.md</code></td><td>The root rules an agent loads at the start of a session. <code>CLAUDE.md</code> is a symlink to it</td></tr>
+<tr><td><code>docs/AGENTS.md</code></td><td>Markdown formatting, mdBook redirects, release-please annotations, generated pages</td></tr>
+<tr><td><code>.github/AGENTS.md</code></td><td>Scorecard-safe workflow changes, issue-form upkeep, the pull request description format</td></tr>
+<tr><td><code>.github/pull_request_template.md</code></td><td>The three headings every pull request body keeps</td></tr>
+<tr><td><code>.github/ISSUE_TEMPLATE/</code></td><td>Six YAML issue forms plus the chooser config</td></tr>
+<tr><td><code>docs/css/</code></td><td>The mdBook stylesheets - <code>root.css</code> for the site, <code>print.css</code> for the single-page print view</td></tr>
+<tr><td><code>.github/renovate.json5</code></td><td>Renovate config, in the house shape - digest pinning, grouped updates, custom regex pins</td></tr>
+<tr><td><code>.github/workflows/renovate.yaml</code></td><td>Self-hosted Renovate, with the release-please app’s credentials</td></tr>
+<tr><td><code>release-please-config.json</code></td><td>Versioning and changelog sections. <code>.release-please-manifest.json</code> holds the version itself</td></tr>
+<tr><td><code>.goreleaser.yaml</code></td><td>One build, archives, checksums, SBOMs, cosign signing. No packages or images</td></tr>
+<tr><td><code>.github/workflows/</code></td><td><code>release-please.yaml</code> opens the release PR; <code>release.yaml</code> builds on the tag it pushes</td></tr>
+<tr><td><code>.github/workflows/scorecard.yaml</code></td><td>OpenSSF Scorecard on <code>main</code>, weekly, and on branch-protection changes. Feeds the badge</td></tr>
+<tr><td><code>.github/workflows/commitlint.yaml</code></td><td>PR title linting, with the pinned commitlint in <code>.github/commitlint/</code></td></tr>
+<tr><td><code>.github/workflows/pre-commit.yaml</code></td><td>The hooks, over the whole tree, so a local skip cannot hide</td></tr>
+<tr><td><code>.github/workflows/scan-lint.yaml</code></td><td>golangci-lint at the version <code>.pre-commit-config.yaml</code> pins, read out of it</td></tr>
+<tr><td><code>.github/workflows/codeql.yaml</code></td><td>CodeQL for <code>go</code> and <code>actions</code>, weekly and per pull request</td></tr>
+<tr><td><code>.golangci.yaml</code></td><td>The house linter set. <code>magefiles/*.go</code> excluded - the build tag makes it uncompilable</td></tr>
+<tr><td><code>.github/workflows/deploy-book.yaml</code></td><td>mdBook to <code>gh-pages</code> on every push to <code>main</code>. Needs Pages enabled, which is a setting</td></tr>
+<tr><td><code>.github/SECURITY.md</code></td><td>Security policy. The two <code>TEMPLATE:</code> blocks in it are the scope lists, which must be written</td></tr>
+<tr><td><code>.github/CODEOWNERS</code></td><td>Review from <code>@colonel-byte/maintainers</code> on every change</td></tr>
+<tr><td><code>.gitattributes</code></td><td>What each generator owns, grouped by the target that writes it</td></tr>
+<tr><td><code>.pre-commit-config.yaml</code></td><td>The org-standard hooks, plus three <code>local</code> ones that call mage. Three more are named in it</td></tr>
+<tr><td><code>magefiles/</code></td><td>A thin task runner - <code>generate:document</code>, <code>dev:checkTables</code>, <code>dev:vendor</code>, <code>dev:verifyVendor</code></td></tr>
+<tr><td><code>go.mod</code>, <code>go.sum</code>, <code>vendor/</code></td><td>The vendored, offline build. <code>mage</code> and <code>testify</code> only</td></tr>
+<tr><td><code>.gitignore</code></td><td>Build output and <code>node_modules/</code>. <code>vendor/</code> is deliberately not in it</td></tr>
+<tr><td><code>docs/{guides,dev,agent}/</code></td><td>A <code>README.md</code> each, saying what belongs in that directory and what does not</td></tr>
+<tr><td><code>docs/workflows/</code></td><td>One page per workflow, which <code>.github/AGENTS.md</code> requires</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="the-task-runner-and-the-offline-build"><a class="header" href="#the-task-runner-and-the-offline-build">The task runner, and the offline build</a></h2>
+<p><code>magefiles/</code> is a thin version of cargoship’s: four targets, <code>mage</code> and <code>testify</code> as the only dependencies, no distro or packaging generators. It exists because about ten rules across <code>AGENTS.md</code>, <code>docs/AGENTS.md</code> and <code>.github/AGENTS.md</code> describe maintaining generated output and defer to a task runner, and the “Pinned versions” section defers entirely to <code>magefiles/AGENTS.md</code>.</p>
+<pre><code class="language-sh">go run ./magefiles/core -l                  # list every target
+go run ./magefiles/core generate:document   # docs/index.md, docs/security.md, docs/SUMMARY.md
+go run ./magefiles/core dev:checkTables     # the Markdown table padding rule, enforced
+go run ./magefiles/core dev:vendor          # go mod tidy, then go mod vendor
+go run ./magefiles/core dev:verifyVendor    # go mod verify, then a GOPROXY=off build
+</code></pre>
+<p>Three of those are wired into <code>.pre-commit-config.yaml</code> as <code>local</code> hooks, so the generated pages, the table padding, and <code>vendor/</code> are checked at commit time rather than discovered in CI.</p>
+<p><strong>The build is vendored and offline by requirement, not by habit.</strong> <code>vendor/</code> is committed, the Go toolchain picks <code>-mod=vendor</code> automatically when it is present, and <code>dev:verifyVendor</code> builds with <code>GOPROXY=off</code> to prove a release can be built with no network. A dependency added without re-vendoring builds fine locally and fails only where it matters, so three things catch it: the <code>verify-vendor</code> hook, <code>.github/workflows/check-go-mod.yaml</code> re-running tidy and vendor and failing on any diff, and <code>dev:verifyVendor</code> in that same job.</p>
+<p>Two files are now generator output rather than hand-written: <code>docs/SUMMARY.md</code> (compiled from the <code>docs/</code> tree) and <code>docs/index.md</code> / <code>docs/security.md</code> (copied from <code>README.md</code> and <code>.github/SECURITY.md</code> with links rebased). All are marked <code>linguist-generated</code>. Edit the source, then regenerate.</p>
+<h2 id="ci"><a class="header" href="#ci">CI</a></h2>
+<p>Ten workflows, each with a page under <code>docs/workflows/</code>. Five run on every pull request - <code>Validate Lint</code>, <code>Validate pre-commit hooks</code>, <code>CodeQL</code>, <code>PR Title Check</code>, <code>Check for go mod changes</code> - and the rest fire on a push to <code>main</code>, a tag, or a schedule.</p>
+<p><strong>No test workflow ships.</strong> A green test check over a repository with no tests means nothing, and the decisions one encodes - which packages, <code>-short</code> or not, which backend provisions the fixture - are not templatable. <a href="#adding-the-test-workflows"><code>docs/dev/adding-ci.md</code></a> is the note for writing the unit-test and end-to-end workflows, including the three things that change in the same pull request when you do.</p>
+<p>One coupling worth knowing before editing either file: <strong><code>scan-lint.yaml</code> reads the golangci-lint version out of <code>.pre-commit-config.yaml</code></strong> rather than pinning its own. Renovate’s <code>pre-commit</code> manager bumps that <code>rev:</code>; its <code>github-actions</code> manager updates <code>uses:</code> references, not inputs inside a <code>with:</code> block. A second pin in the workflow would be one nothing keeps in step with the first.</p>
+<h2 id="badges"><a class="header" href="#badges">Badges</a></h2>
+<p>The three at the top of this file are the house set, and each one needs something to exist before it resolves:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Badge</th><th>Resolves once</th><th>Fails as</th></tr>
+</thead>
+<tbody>
+<tr><td>Latest Release</td><td>A release has been published, which means <code>release.yaml</code> has run on a tag</td><td><code>no releases</code></td></tr>
+<tr><td>Build Status</td><td><code>.github/workflows/release.yaml</code> exists under that exact filename</td><td><code>no status</code></td></tr>
+<tr><td>OpenSSF Scorecard</td><td>A Scorecard run has published a score for the repository</td><td><code>unknown</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>They carry <code>OWNER/REPO</code> like everything else in the template, so they render as “repo not found” until the bootstrap grep replaces them - which is deliberate, since a badge is the most visible thing on the page and a wrong slug in one silently reports another repository’s health as this one’s.</p>
+<p>Two things to know:</p>
+<ul>
+<li><strong>The Build Status badge is keyed on the workflow filename</strong>, not its <code>name:</code>. Rename <code>release.yaml</code> and the badge goes to <code>no status</code> without anything else breaking.</li>
+<li><strong>The Scorecard badge needs <code>publish_results: true</code> and a public repository.</strong> <code>workflows/scorecard.yaml</code> sets it, but the workflow can otherwise run happily and leave the badge on <code>unknown</code> - see <a href="#scorecards-supply-chain-security"><code>docs/workflows/scorecard.md</code></a>. The first run on <code>main</code> is what fills it in.</li>
+</ul>
+<p>Cargoship carries a fourth, keyed on <code>go-mod/go-version</code>, which this template now has a <code>go.mod</code> for. Add it if you want it:</p>
+<pre><code class="language-markdown">[![Go version](https://img.shields.io/github/go-mod/go-version/OWNER/REPO?filename=go.mod)](https://go.dev/)
+</code></pre>
+<h2 id="releases"><a class="header" href="#releases">Releases</a></h2>
+<p>Release-please opens one pull request holding the next version and the regenerated changelog; merging it pushes a <code>vN.N.N</code> tag, and that tag is what goreleaser fires on. Both are deliberately basic - the cargoship versions also build <code>.deb</code>/<code>.rpm</code>/<code>.apk</code> packages, four container images, and an Ansible collection tarball, none of which is templatable. Read <a href="#release-please"><code>docs/workflows/release-please.md</code></a> and <a href="#goreleaser"><code>docs/workflows/release.md</code></a>, then:</p>
+<ul>
+<li><strong>Set <code>package-name</code> and <code>extra-files</code> in <code>release-please-config.json</code>.</strong> <code>extra-files</code> starts empty, and a page pinning this project’s own version has to be listed there <em>and</em> annotated in place or it goes stale silently.</li>
+<li><strong>Check the <code>-ldflags -X</code> symbol paths in <code>.goreleaser.yaml</code> against the code.</strong> A <code>-X</code> naming a variable that does not exist is ignored without complaint, and the binary reports no version.</li>
+<li><strong>The <code>COSIGN_KEY</code> and <code>COSIGN_PASS</code> secrets are required</strong>, since <code>cosign.pub</code> at the root is the published half of that keypair. There is no unsigned fallback. The workflow maps them onto <code>COSIGN_PRIVATE_KEY</code> and <code>COSIGN_PASSWORD</code>, which are cosign’s own variable names.</li>
+<li><strong>Leave <code>.release-please-manifest.json</code> and <code>CHANGELOG.md</code> alone.</strong> Release-please owns both and rewrites them wholesale.</li>
+</ul>
+<h2 id="renovate"><a class="header" href="#renovate">Renovate</a></h2>
+<p>The workflow runs Renovate itself rather than installing the hosted <code>renovate[bot]</code> app, so the pull requests are opened with the release-please app’s installation token. Read <a href="#renovate-1"><code>docs/workflows/renovate.md</code></a> before enabling it - three things bite:</p>
+<ul>
+<li><strong>The app needs <code>Workflows: write</code></strong>, or every GitHub Actions pin update fails and nothing else does.</li>
+<li><strong>The author is the app’s bot, not <code>renovate[bot]</code>.</strong> Any <code>if: github.actor == 'renovate[bot]'</code> gate, author-selected commitlint config, or bot-pinned commit email stops matching, silently.</li>
+<li><strong><code>automerge</code> is off</strong>, explicitly rather than by default, so a preset added to <code>extends</code> cannot turn it back on. The grouped rules mean one pull request per family, each reviewed and merged by a person.</li>
+</ul>
+<h2 id="wiring-up-docscss"><a class="header" href="#wiring-up-docscss">Wiring up <code>docs/css/</code></a></h2>
+<p>mdBook loads neither file unless <code>book.toml</code> names it, and a stylesheet nothing references fails silently - the book builds and looks untouched. Add both to <code>[output.html]</code>:</p>
+<pre><code class="language-toml">[output.html]
+additional-css = [ "docs/css/root.css", "docs/css/print.css" ]
+</code></pre>
+<p><code>print.css</code> carries two blocks keyed on mdBook heading slugs, marked <code>TEMPLATE:</code> in the file: one shrinks the generated reference chapters, the other drops the developer-facing tail from the print page. Both match on an ID, so a wrong slug matches nothing and reports nothing. Build the book, open the print page, and read the real IDs off the headings before editing them - or delete both blocks, which leaves the rest of the print styling working.</p>
+<h2 id="filling-it-in"><a class="header" href="#filling-it-in">Filling it in</a></h2>
+<p>Generating a repository from this template copies <strong>files, not settings</strong> — so <code>.github/CODEOWNERS</code> requires nothing until a ruleset says so, the workflows have no secrets, the labels the issue forms name do not exist, and the book 404s until Pages is enabled. <a href="#new-repository-checklist"><code>docs/dev/new-repo-checklist.md</code></a> is the list, with the <code>gh</code> commands for the scriptable parts and the order to do the first run in. The placeholder sweep below comes first.</p>
+<p>Two placeholders appear throughout. Replace both before the first commit in a new repository:</p>
+<pre><code class="language-sh">grep -rn 'OWNER/REPO\|OWNER\.github\.io\|&lt;project&gt;' . --exclude-dir=.git
+</code></pre>
+<ul>
+<li><code>OWNER/REPO</code> - the repository slug, in the issue-tracker section, the Scorecard links, the advisory URL, the <code>gh</code> snippets, and <strong><code>book.toml</code></strong>.</li>
+<li><code>OWNER.github.io</code> - the published book’s host, in <code>docs/AGENTS.md</code> and the issue chooser.</li>
+<li><code>&lt;project&gt;</code> - the binary and module name, in the layout table, the <code>go list -deps</code> example, and the help-text examples.</li>
+</ul>
+<p><code>book.toml</code> is the one to check by eye: <code>git-repository-url</code> and <code>edit-url-template</code> are the repository icon and the per-page edit pencil, and pointed at the wrong slug they build cleanly and send every reader somewhere else. Its <code>[book] authors</code> and copyright header are the template author’s, too.</p>
+<p>The same instructions are repeated as the first section of <code>AGENTS.md</code>, since that is the file an agent loads and this one is not. It ends with “delete this whole section once it is done” - keep the two in step if you edit either.</p>
+<p>Then work through the <code>&lt;!-- ... --&gt;</code> comments in <code>AGENTS.md</code>. They mark the five places that cannot be templated: what the project is, the layout table, the build and test commands, which test invocations are forbidden, and the quirks worth knowing.</p>
+<h2 id="sections-to-delete-when-they-do-not-apply"><a class="header" href="#sections-to-delete-when-they-do-not-apply">Sections to delete when they do not apply</a></h2>
+<p>Several rules in <code>AGENTS.md</code> assume a Cobra CLI with a viper config file, a mage task runner, and an mdBook under <code>docs/</code>. Delete the ones a given repository does not have rather than leaving a rule pointing at machinery that is not there - a rules file whose claims do not check out is the failure mode its own “A doc’s claims are checkable” section exists to prevent.</p>
+<ul>
+<li><strong>A new flag belongs in the config file too</strong> - needs cobra plus viper plus a sample config at the root.</li>
+<li><strong>Help text has a budget</strong> - needs a CLI with <code>--help</code> as a real surface.</li>
+<li><strong>Exit codes are a compatibility promise</strong> - needs <code>cmd/exit.go</code> and a published table.</li>
+<li><strong>Pinned versions, digests, and checksums</strong> - needs <code>magefiles/AGENTS.md</code> to exist, since it defers to it.</li>
+<li><strong>Generated output goes in a pull request of its own</strong> - needs a generator that renders committed artifacts.</li>
+<li><strong><code>docs/AGENTS.md</code></strong> in full - needs mdBook and release-please.</li>
+</ul>
+<h2 id="labels-the-issue-forms-need"><a class="header" href="#labels-the-issue-forms-need">Labels the issue forms need</a></h2>
+<p>GitHub drops an unknown label silently, so create these before the forms are used:</p>
+<pre><code class="language-sh">gh label create bug --repo OWNER/REPO
+gh label create ci --repo OWNER/REPO
+gh label create test-flake --repo OWNER/REPO
+gh label create enhancement --repo OWNER/REPO
+gh label create documentation --repo OWNER/REPO
+gh label create stack-task --repo OWNER/REPO
+</code></pre>
+<p>Renovate names five more in <code>renovate.json5</code>, and drops them just as silently:</p>
+<pre><code class="language-sh">gh label create renovate/oci --repo OWNER/REPO
+gh label create renovate/action --repo OWNER/REPO
+gh label create renovate/gomod --repo OWNER/REPO
+gh label create renovate/pre-commit --repo OWNER/REPO
+gh label create security --repo OWNER/REPO
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><!-- Page generated by mage; DO NOT EDIT -->
+<h1 id="security-policy"><a class="header" href="#security-policy">Security Policy</a></h1>
+<h2 id="supported-versions"><a class="header" href="#supported-versions">Supported versions</a></h2>
+<p>This project is pre-1.0 and releases from <code>main</code> on every conventional commit that warrants one, so fixes land in a new minor release rather than being backported. Only the most recent release line receives security fixes; upgrade before reporting an issue against an older tag.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Version</th><th>Supported</th></tr>
+</thead>
+<tbody>
+<tr><td>Latest <code>v0.x</code> release</td><td>Yes</td></tr>
+<tr><td>Any earlier release</td><td>No</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="reporting-a-vulnerability"><a class="header" href="#reporting-a-vulnerability">Reporting a vulnerability</a></h2>
+<p>Report privately through GitHub: <strong><a href="https://github.com/OWNER/REPO/security/advisories/new">open a draft advisory</a></strong>. Do not open a public issue, and do not include a working exploit against a third party’s system.</p>
+<p>You should expect an acknowledgement within 3 business days and an assessment – whether we consider it a vulnerability, and the severity we assign – within 10 business days. Confirmed issues are fixed in the next release, and we aim to publish the advisory within 90 days of the report, sooner when a fix is already out. You will be credited in the advisory unless you ask not to be.</p>
+<p>Include the version you are running, the host OS, the commands that reproduce the behaviour, and what an attacker gains.</p>
+<h2 id="scope"><a class="header" href="#scope">Scope</a></h2>
+<!-- TEMPLATE: both lists are the point of this file, and a generic version of either is worse than none. Say what an attacker would have to compromise to matter here, and name the trust boundary the project actually defends. The entries below are the shape, not the content. -->
+<p>In scope: the released binary and the packages under the module root; the signing and verification path; credential handling; and the release workflow and the artifacts it publishes.</p>
+<p>Out of scope: vulnerabilities in upstream components this project packages or depends on – report those to the project that owns them; anything that requires an attacker to already have root on the machine this runs from, which by design holds its credentials; resource exhaustion from deliberately malformed input supplied by the operator themselves; and misconfiguration of a user’s own environment.</p>
+<h2 id="verifying-a-release"><a class="header" href="#verifying-a-release">Verifying a release</a></h2>
+<p>Release archives and <code>checksums.txt</code> are signed with cosign using the key whose public half is <a href="https://github.com/OWNER/REPO/blob/main/cosign.pub"><code>cosign.pub</code></a> in this repository, and archives ship with an SBOM.</p>
+<pre><code class="language-console">cosign verify-blob --key cosign.pub --bundle checksums.txt.sigstore.json checksums.txt
+</code></pre>
+<p>See <a href="#goreleaser">the GoReleaser reference</a> for the full set of published artifacts.</p>
+<h2 id="security-in-ci"><a class="header" href="#security-in-ci">Security in CI</a></h2>
+<p>Pull requests and <code>main</code> are scanned by CodeQL, dependencies are updated by Renovate, and supply-chain practices are scored weekly by OpenSSF Scorecard. Results appear in the repository’s Security tab.</p>
+<!-- TEMPLATE: where a check is knowingly scored down -- a vendored tree, a generated artifact, a pinned base image -- say so here and link the record that explains why. A reader comparing the badge against this page should not have to guess. -->
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="docsguides"><a class="header" href="#docsguides"><code>docs/guides/</code></a></h1>
+<p>Long-form pages for the person <strong>running</strong> this project, not the person changing it. A guide explains a task end to end: what it is for, the commands in order, what each one needs beforehand, and what the output means.</p>
+<h2 id="this-is-where-help-text-overflows-to"><a class="header" href="#this-is-where-help-text-overflows-to">This is where help text overflows to</a></h2>
+<p>Flag descriptions are capped at 125 characters, and <code>--help</code> as a whole has a budget - see the “Help text has a budget” section of the root <a href="../AGENTS.html"><code>AGENTS.md</code></a>. When a flag needs more explanation than a sentence, the explanation lives here and the flag string names the page:</p>
+<pre><code class="language-go">CmdCreateFlagContentStore = "`PATH` of a content store to resolve images and files from instead of the network. See docs/guides/content-store.md."
+</code></pre>
+<p>That makes the relationship two-way, and both directions can go stale silently:</p>
+<ul>
+<li><strong>A guide named from a flag string has to exist, under that exact path.</strong> Nothing in the build checks a path inside a Go string literal.</li>
+<li><strong>Content truncated out of help text has to already be in the guide.</strong> Check the guide actually says the thing before deleting the sentence that said it - a cap is not a reason to lose information, and at least one truncation in this organization’s history had to move a sentence into a guide first.</li>
+</ul>
+<p>A walkthrough, a worked scenario, or an enumeration of how several flags interact is a guide rather than a <code>Long</code>. So is an example per flag combination, when <code>--help</code> should only carry the three to five common cases.</p>
+<h2 id="these-are-the-pages-checked-hardest"><a class="header" href="#these-are-the-pages-checked-hardest">These are the pages checked hardest</a></h2>
+<p>A command printed here is copied and pasted. The cost of a wrong one is not a moment of confusion, it is an operator assuming they mistyped before assuming the guide is wrong - so the “A doc’s claims are checkable” rules in the root <code>AGENTS.md</code> apply most strictly to this directory. Before changing a guide, run what it prints.</p>
+<p>Where a page pins this project’s own version - an image tag, a release archive’s filename - it needs release-please annotations <em>and</em> an entry in the release-please config, or it goes stale on the next release. <a href="AGENTS.html"><code>docs/AGENTS.md</code></a> has the exact form, including why the per-line marker is the wrong one to use inside a fenced block.</p>
+<h2 id="what-does-not-belong-here"><a class="header" href="#what-does-not-belong-here">What does not belong here</a></h2>
+<p>Anything a contributor needs and an operator does not: build flags, test harness setup, release mechanics. That is <a href="dev/README.html"><code>docs/dev/</code></a>. Decisions and their tradeoffs are <a href="agent/README.html"><code>docs/agent/</code></a>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="docsdev"><a class="header" href="#docsdev"><code>docs/dev/</code></a></h1>
+<p>Pages for the person <strong>changing</strong> this project: how it builds, how it is tested, how a release is cut, and what the task runner does. The audience is a contributor with the repository checked out, which is what separates this directory from <a href="guides/README.html"><code>docs/guides/</code></a>.</p>
+<h2 id="what-belongs-here"><a class="header" href="#what-belongs-here">What belongs here</a></h2>
+<ul>
+<li><strong>Build flags, and what each one measured.</strong> The flags a release is built with are not obvious from the code, and a size or performance number compared against a baseline built with different flags is worse than no number at all. A page here is the one safe reference for how to produce a comparable build, and the rule is to read it rather than to remember the flags.</li>
+<li><strong>The test harness.</strong> What each suite covers, what it needs installed, and - the part that actually gets people - what each backend or environment <strong>does not</strong> exercise. A suite that skips fifteen steps because the environment cannot reach them is not a pass, and the page saying so is what stops it being read as one.</li>
+<li><strong>The task runner reference.</strong> One entry per target, what it reads and what it writes. Several rules in the root <a href="../AGENTS.html"><code>AGENTS.md</code></a> and in <a href="AGENTS.html"><code>docs/AGENTS.md</code></a> defer to this page for which target regenerates what.</li>
+<li><strong>Release mechanics</strong>, where they go beyond what <a href="workflows"><code>docs/workflows/</code></a> covers - the artifact set, the signing keys, how to run the release tooling locally without cutting a release.</li>
+</ul>
+<h2 id="two-things-to-get-right"><a class="header" href="#two-things-to-get-right">Two things to get right</a></h2>
+<ul>
+<li><strong>Name the forbidden invocation, not just the right one.</strong> A page that says how to run the tests and not which invocation pulls in the suites that need real infrastructure gets the wrong one run first. The root <code>AGENTS.md</code> carries the short version; this is where the reason lives.</li>
+<li><strong>A measured number needs the date and the method.</strong> Every count, size, and pin in a tree defaults to having been measured once and never again. Say what was measured, with what flags, against what baseline - and re-measure rather than quoting an earlier run, since toolchain and dependency drift move absolute numbers with nobody editing a file.</li>
+</ul>
+<h2 id="what-does-not-belong-here-1"><a class="header" href="#what-does-not-belong-here-1">What does not belong here</a></h2>
+<p>Operator-facing walkthroughs are <a href="guides/README.html"><code>docs/guides/</code></a>. The reasoning behind a decision - as opposed to the mechanics of a process - is <a href="agent/README.html"><code>docs/agent/</code></a>; a <code>choice-*.md</code> explains why the build does an odd thing, while a page here explains how to do it.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="adding-the-test-workflows"><a class="header" href="#adding-the-test-workflows">Adding the test workflows</a></h1>
+<p>Six workflows ship with this template: <a href="#check-for-go-mod-changes"><code>check-go-mod</code></a>, <a href="#codeql"><code>codeql</code></a>, <a href="#pr-title-check"><code>commitlint</code></a>, <a href="#validate-pre-commit-hooks"><code>pre-commit</code></a>, <a href="#validate-lint"><code>scan-lint</code></a>, and <a href="#scorecards-supply-chain-security"><code>scorecard</code></a>, plus the two release workflows. <strong>Nothing runs the tests</strong>, because a test workflow for a repository with no tests is a green check that means nothing.</p>
+<p>The two that are deliberately left to write are below. Both are small; what matters is the handful of decisions each one encodes, which is why they are notes rather than files.</p>
+<p>When you add either, three things change in the same pull request:</p>
+<ol>
+<li>The workflow, under <code>.github/workflows/</code>.</li>
+<li>A page under <code>docs/workflows/</code> named after it - required by <a href="https://github.com/OWNER/REPO/blob/main/.github/AGENTS.md"><code>.github/AGENTS.md</code></a>, then <code>go run ./magefiles/core generate:document</code> to put it in the summary.</li>
+<li>The <code>Which CI job</code> dropdown in <a href="https://github.com/OWNER/REPO/blob/main/.github/ISSUE_TEMPLATE/01-failing-build.yml"><code>.github/ISSUE_TEMPLATE/01-failing-build.yml</code></a>, which lists the <code>name:</code> a workflow shows in the checks list. That one goes stale silently.</li>
+</ol>
+<h2 id="unit-tests"><a class="header" href="#unit-tests">Unit tests</a></h2>
+<p>Triggers on <code>pull_request</code> and <code>merge_group</code>, checks out, <code>setup-go</code> with <code>go-version-file: go.mod</code>, and runs the suite. Four decisions to make deliberately:</p>
+<ul>
+<li><strong>Name the packages, or name the exclusion.</strong> <code>go test ./...</code> picks up <code>magefiles/</code> at the root, which cannot build outside mage. Either list the package paths or pass <code>-short</code> and let the suites gate themselves.</li>
+<li><strong><code>-short</code> is not optional once there are e2e suites in the module.</strong> Without it, a unit-test job pulls in suites that want Docker or a cluster and either hangs or fails for reasons that have nothing to do with the change. This is the rule the <code>TEMPLATE:</code> stub in the root <a href="../AGENTS.html"><code>AGENTS.md</code></a> is waiting for - write it there too, naming the forbidden invocation.</li>
+<li><strong>Build offline, like every other job.</strong> <code>GOFLAGS=-mod=vendor</code>, <code>GOPROXY=off</code>. A test run that silently reaches a proxy hides a vendor tree that is missing a file.</li>
+<li><strong>Replay the fuzz seed corpus if there are fuzz targets.</strong> <code>go test -run=Fuzz</code> replays the committed corpus without fuzzing, which is cheap and catches a regression on an input that already found a bug once. It is not the same as a fuzzing run, and should not be confused for one in the job name.</li>
+</ul>
+<pre><code class="language-yaml"># The shape, not the whole file.
+- name: Run unit tests
+  run: go test -short -mod=vendor ./cmd/... ./internal/... ./pkg/...
+  env:
+    GOFLAGS: -mod=vendor
+    GOPROXY: "off"
+</code></pre>
+<h2 id="end-to-end-tests"><a class="header" href="#end-to-end-tests">End-to-end tests</a></h2>
+<p>Worth writing only once there is something to drive end to end, and worth treating as the most expensive workflow in the repository - cargoship’s is 154 lines and provisions a fleet.</p>
+<ul>
+<li><strong>Decide what provisions the fixture</strong>, and make the job’s name say which. A suite that brings up containers, a suite that brings up VMs, and a suite that runs against hosts that already exist are three different workflows’ worth of setup, and a result is only as good as the backend that produced it.</li>
+<li><strong>Check what skipped, not just what failed.</strong> A skip on an e2e suite usually means a capability the environment does not have, and a run with fifteen of them read as a pass is the commonest way this kind of suite misleads. Make the job surface the skip count.</li>
+<li><strong>Do not make it a required status check until it is reliable.</strong> An e2e job that flakes becomes a job people merge past, which is worse than not having it.</li>
+<li><strong>Upload diagnostics on failure.</strong> <code>actions/upload-artifact</code> with the suite’s logs is the difference between a reproducible report and “it failed in CI”. The flaky-test issue form asks for exactly that artifact.</li>
+</ul>
+<p>If the suite needs credentials or a registry, give it its own workflow rather than adding secrets to the unit-test job - a fork pull request cannot see secrets, and a unit-test job that silently degrades on forks is a check that means different things depending on who opened the pull request.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="new-repository-checklist"><a class="header" href="#new-repository-checklist">New repository checklist</a></h1>
+<p>Generating a repository from a template copies <strong>files, not settings</strong>. Everything in this template is a file, so it all arrives; everything in the Settings tab does not, and several of the files that arrive are inert until a matching setting exists. A <code>CODEOWNERS</code> that requires nothing and a workflow that goes green while the site 404s both look fine from the file list.</p>
+<p>Two more things about generation, both easy to be surprised by: the new repository starts with a <strong>single initial commit</strong> - no history, tags, releases, or issues - and there is <strong>no ongoing link to the template</strong>. Nothing syncs a later template improvement forward; it has to be copied by hand.</p>
+<h2 id="do-this-first"><a class="header" href="#do-this-first">Do this first</a></h2>
+<p>The placeholder sweep is the first section of the root <a href="../AGENTS.html"><code>AGENTS.md</code></a>, and it comes before anything below. A badge or a <code>book.toml</code> URL left on the template’s slug reports another repository’s state as this one’s.</p>
+<h2 id="settings-that-do-not-travel"><a class="header" href="#settings-that-do-not-travel">Settings that do not travel</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Setting</th><th>What stays broken without it</th><th>Where</th></tr>
+</thead>
+<tbody>
+<tr><td>Branch protection or a ruleset</td><td><code>.github/CODEOWNERS</code> requires nothing - the file alone is advisory. <code>commitlint.yaml</code>’s <code>merge_group</code> pass-through is dead code until the check is <em>required</em></td><td>Settings → Rules</td></tr>
+<tr><td>Actions secrets</td><td><code>renovate.yaml</code> and <code>release-please.yaml</code> fail at the first step; <code>release.yaml</code> fails at signing</td><td>Settings → Secrets and variables → Actions</td></tr>
+<tr><td>The GitHub App installation</td><td>Separate from the secrets, and the one that fails partially: without <code>Workflows: write</code>, every action-pin pull request fails and nothing else does</td><td>Org → Settings → GitHub Apps</td></tr>
+<tr><td>Labels</td><td>Every label an issue form or <code>renovate.json5</code> names. GitHub drops an unknown label <strong>silently</strong>, so the issue arrives unlabelled with no error</td><td><code>gh label create</code>, below</td></tr>
+<tr><td>Issues enabled</td><td>Renovate’s dependency dashboard logs an error and carries on without it</td><td>Settings → Features</td></tr>
+<tr><td>Public visibility</td><td>The Scorecard badge cannot resolve - there is no published score for a private repository</td><td>Settings → Danger Zone</td></tr>
+<tr><td>GitHub Pages</td><td>The book 404s while <code>deploy-book.yaml</code> goes green. Source: deploy from branch <code>gh-pages</code>, folder <code>/</code></td><td>Settings → Pages</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Two of these are worth fixing once rather than per repository.</strong> An <strong>org-level repository ruleset</strong> targeting all repositories, or a name pattern, gives every new repository its required checks and review rules at creation with no per-repo step. <strong>Org-level Actions secrets</strong> with visibility set to all repositories do the same for the app credentials and the cosign key. If both exist, most of this table stops being a checklist.</p>
+<h2 id="the-parts-that-can-be-scripted"><a class="header" href="#the-parts-that-can-be-scripted">The parts that can be scripted</a></h2>
+<pre><code class="language-sh">REPO=OWNER/REPO
+
+# Labels the issue forms name.
+for l in bug ci test-flake enhancement documentation stack-task; do
+  gh label create "$l" --repo "$REPO"
+done
+
+# Labels renovate.json5 names.
+for l in renovate/oci renovate/action renovate/gomod renovate/npm renovate/pre-commit security; do
+  gh label create "$l" --repo "$REPO"
+done
+
+# Secrets. The app credentials are shared with release-please; the cosign pair signs the
+# release archives. Omit any that are already org-level secrets visible to this repository.
+gh secret set RELEASE_PLEASE_GITHUB_APP_ID --repo "$REPO"
+gh secret set RELEASE_PLEASE_GITHUB_APP_SECRET --repo "$REPO" &lt; path/to/app-private-key.pem
+gh secret set COSIGN_KEY --repo "$REPO" &lt; path/to/cosign.key
+gh secret set COSIGN_PASS --repo "$REPO"
+</code></pre>
+<p><code>COSIGN_KEY</code> and <code>COSIGN_PASS</code> are the <strong>secret</strong> names; <code>release.yaml</code> maps them onto <code>COSIGN_PRIVATE_KEY</code> and <code>COSIGN_PASSWORD</code>, which are cosign’s own variable names and are not renameable. Renaming one side only produces an error at the signing step rather than a missing-secret error.</p>
+<h2 id="verifying-it-rather-than-assuming-it"><a class="header" href="#verifying-it-rather-than-assuming-it">Verifying it rather than assuming it</a></h2>
+<p>Each of these answers one row of the table, and each has a failure mode that is silent otherwise:</p>
+<pre><code class="language-sh">gh label list --repo "$REPO"                    # every label the forms and renovate name
+gh secret list --repo "$REPO"                   # repo-level only; org secrets do not appear here
+gh api "repos/$REPO/rules/branches/main"        # [] means nothing is enforced on main
+gh api "repos/$REPO/pages" --jq .html_url       # 404 until Pages is enabled
+</code></pre>
+<p>Then open <code>https://github.com/OWNER/REPO/issues/new/choose</code> on a branch after changing an issue form. A malformed form is reported as a banner on that page and nowhere else - parsing as YAML is not enough to know it renders.</p>
+<h2 id="first-run-in-order"><a class="header" href="#first-run-in-order">First run, in order</a></h2>
+<p>Each step fails in a way that looks like the one before it, so do them in this order:</p>
+<ol>
+<li><strong>Push to <code>main</code>.</strong> This is what first runs <code>scorecard.yaml</code> and <code>deploy-book.yaml</code>, and what gives the badges something to resolve against.</li>
+<li><strong>Dispatch Renovate with <code>dryRun: true</code>.</strong> The log lists every update it resolved without touching the repository - see <a href="#renovate-1"><code>renovate.md</code></a>. A bad <code>customManagers</code> regex matches nothing and reports success, so this is the run that tells you.</li>
+<li><strong>Open a throwaway pull request.</strong> Five checks should appear: <code>Validate Lint</code>, <code>Validate pre-commit hooks</code>, <code>CodeQL</code>, <code>PR Title Check</code>, <code>Check for go mod changes</code>. A check that does not appear is a workflow whose trigger or filename is wrong, not a flake.</li>
+<li><strong>Mark the checks required</strong>, once they pass. Until then <code>commitlint.yaml</code>’s <code>merge_group</code> branch does nothing, and <code>CODEOWNERS</code> is a suggestion.</li>
+<li><strong>Let release-please open its first pull request.</strong> Merging it pushes the first tag, which is what <code>release.yaml</code> fires on, and what turns the Latest Release badge from <code>no releases</code> into a version.</li>
+</ol>
+<h2 id="still-to-write-per-repository"><a class="header" href="#still-to-write-per-repository">Still to write, per repository</a></h2>
+<p><a href="#adding-the-test-workflows"><code>adding-ci.md</code></a> covers the two workflows this template deliberately does not ship - unit tests and end-to-end - and the three things that change in the same pull request when you add either.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="check-for-go-mod-changes"><a class="header" href="#check-for-go-mod-changes">Check for go mod changes</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/check-go-mod.yaml"><code>.github/workflows/check-go-mod.yaml</code></a> is what makes the vendored, offline build a requirement rather than a convention. It runs on every pull request and on the merge queue, and it fails for one reason: <code>go.mod</code>, <code>go.sum</code> and <code>vendor/</code> do not agree with each other.</p>
+<h2 id="the-two-steps"><a class="header" href="#the-two-steps">The two steps</a></h2>
+<ul>
+<li><strong><code>go mod tidy</code>, <code>go mod vendor</code>, then <code>git diff --exit-code go.mod go.sum vendor/</code>.</strong> Re-resolves the graph and re-vendors from scratch, then fails if the result differs from what was committed. This catches a dependency added without running <code>mage dev:vendor</code>, and a <code>vendor/</code> left behind by a hand-edited <code>go.mod</code>.</li>
+<li><strong><code>go run ./magefiles/core dev:verifyVendor</code>.</strong> Runs <code>go mod verify</code>, then builds with <code>GOFLAGS=-mod=vendor GOPROXY=off</code> - the invocation a release has to survive. This catches a vendor tree that is internally consistent but incomplete.</li>
+</ul>
+<p>The <code>go run ./magefiles/core</code> form rather than <code>mage</code>: same targets, builds from <code>vendor/</code>, needs no mage binary on the runner.</p>
+<h2 id="why-both"><a class="header" href="#why-both">Why both</a></h2>
+<p>They fail on different mistakes, and the second is the one that costs an afternoon. A <code>vendor/</code> missing a file still builds locally, because the file is on disk - it is only a fresh clone that notices. The commonest cause is not a forgotten <code>go mod vendor</code> at all, but a <code>.gitignore</code> pattern that quietly excluded part of the vendor tree; see “A new <code>.gitignore</code> pattern can silently empty part of <code>vendor/</code>” in <a href="https://github.com/OWNER/REPO/blob/main/magefiles/AGENTS.md"><code>magefiles/AGENTS.md</code></a>.</p>
+<p>That check is one command, and it is worth running by hand when a pattern changes:</p>
+<pre><code class="language-sh">git ls-files --others --ignored --exclude-standard -- vendor/
+</code></pre>
+<p>It should print nothing.</p>
+<h2 id="when-it-fails-on-a-bots-pull-request"><a class="header" href="#when-it-fails-on-a-bots-pull-request">When it fails on a bot’s pull request</a></h2>
+<p>A dependency update re-vendors as part of the change, so the first step passes. Where it does not - a module that moved import paths, say - the fix is a human running <code>mage dev:vendor</code> on the branch, not a rerun.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="codeql"><a class="header" href="#codeql">CodeQL</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/codeql.yaml"><code>.github/workflows/codeql.yaml</code></a> runs GitHub’s CodeQL analysis on pushes to <code>main</code>, on pull requests, on the merge queue, and weekly. Results land in the repository’s Security tab. The weekly run is not redundant: it picks up queries and advisories published after a commit landed.</p>
+<p>Two languages are analyzed, with different build modes:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Language</th><th>Build mode</th><th>What that means</th></tr>
+</thead>
+<tbody>
+<tr><td><code>go</code></td><td><code>manual</code></td><td>The workflow’s own <code>go build</code> decides which packages get extracted</td></tr>
+<tr><td><code>actions</code></td><td><code>none</code></td><td>The workflow files themselves are scanned, no build involved</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="the-go-build-step-is-the-package-list"><a class="header" href="#the-go-build-step-is-the-package-list">The Go build step is the package list</a></h2>
+<p>This is the part that needs maintaining. Because Go is analyzed by <em>building</em> it, CodeQL’s <code>paths-ignore</code> setting does not apply - it has no effect on Go - so every exclusion has to be expressed as the set of packages the build step names.</p>
+<p>Today that is <code>./magefiles/pkg/...</code> and nothing else, because <code>magefiles/*.go</code> is <code>package main</code> behind <code>//go:build mage</code> and mage supplies the main function at runtime, so <code>go build</code> cannot compile it at all. <code>./...</code> would pick it up and fail.</p>
+<p><strong>Widen the list one package at a time as the repository grows</strong> - <code>./cmd/...</code>, <code>./internal/...</code>, <code>./pkg/...</code>, and <code>.</code> for a root package. A pattern matching no package fails the build step, so adding a path before the package exists breaks the scan rather than skipping it.</p>
+<h2 id="it-builds-offline-like-everything-else"><a class="header" href="#it-builds-offline-like-everything-else">It builds offline, like everything else</a></h2>
+<p><code>GOFLAGS=-mod=vendor</code>, <code>GOPROXY=off</code>, <code>GOSUMDB=off</code>, <code>GOTOOLCHAIN=local</code>. Everything the build needs is vendored, so an accidental network access fails fast rather than quietly succeeding on a runner and failing in an air-gapped build. This matches the environment <a href="#check-for-go-mod-changes"><code>check-go-mod.yaml</code></a> enforces.</p>
+<h2 id="permissions"><a class="header" href="#permissions">Permissions</a></h2>
+<p><code>security-events: write</code> to upload the results, <code>actions: read</code> for the <code>actions</code> language to read workflow files, and <code>packages: read</code> for any private module the build resolves. All three are on the job, not the file - see <a href="https://github.com/OWNER/REPO/blob/main/.github/AGENTS.md"><code>.github/AGENTS.md</code></a>, where a top-level write zeroes Scorecard’s Token-Permissions check.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="pr-title-check"><a class="header" href="#pr-title-check">PR Title Check</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/commitlint.yaml"><code>.github/workflows/commitlint.yaml</code></a> lints the <strong>pull request title</strong> against <a href="https://www.conventionalcommits.org/">conventional commits</a>. It is a standard across the organization, and it is load-bearing rather than cosmetic: pull requests are squash-merged, so the title becomes the commit message on <code>main</code>, and release-please reads those messages to decide the next version and to write <code>CHANGELOG.md</code>. A title with the wrong type produces a release with the wrong version number.</p>
+<p>This is why the job lints the title and not the commits. <code>wagoid/commitlint-github-action</code> lints commit messages, which are the ones squashing throws away, so it is not a drop-in replacement for this step.</p>
+<h2 id="the-two-configs"><a class="header" href="#the-two-configs">The two configs</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>File</th><th>Applies to</th><th>Difference</th></tr>
+</thead>
+<tbody>
+<tr><td><code>.github/commitlint/.commitlintrc.yaml</code></td><td>Human authors</td><td><code>header-max-length</code> of 100</td></tr>
+<tr><td><code>.github/commitlint/.commitlintrc.bot.yaml</code></td><td>Any author whose login ends <code>[bot]</code></td><td><code>header-max-length</code> off</td></tr>
+</tbody>
+</table>
+</div>
+<p>A bot cannot shorten a module path, and <code>build(deps): bump &lt;module&gt; from X to Y</code> runs past 100 characters for any dependency with a long import path. Turning the rule off for everyone would lose the one thing it buys - a readable <code>git log</code> - so it is off for bots only, and every other rule still applies to them.</p>
+<p><strong>The two files must stay in step on every rule but that one.</strong> Commitlint cannot extend a YAML sibling, so there is no shared base and the duplication is real; a rule added to one and not the other is a rule humans or bots quietly escape.</p>
+<h2 id="why-the-bot-match-is-a-suffix-not-a-name"><a class="header" href="#why-the-bot-match-is-a-suffix-not-a-name">Why the bot match is a suffix, not a name</a></h2>
+<p>The author switch matches <code>*[bot]</code> rather than a list of names. Self-hosted Renovate opens pull requests as whichever GitHub App minted its token - see <a href="#renovate-1"><code>renovate.md</code></a> - so the name is not knowable from inside this file, and a hard-coded one fails by silently linting a bot’s title against the strict config. The suffix is assigned by GitHub and cannot be spoofed by a human account.</p>
+<h2 id="it-reports-success-on-merge_group"><a class="header" href="#it-reports-success-on-merge_group">It reports success on <code>merge_group</code></a></h2>
+<p>The job is intended to be a required status check, which means the merge queue waits for a <code>title_check</code> result on the <code>merge_group</code> ref as well. There is no pull request under that event, so every step is skipped and the job passes - the title was already linted on the pull request that got queued. Skipping the whole job instead would leave the check with no result at all, which blocks the queue forever.</p>
+<p>The same reasoning applies to bots: the job runs for them with a laxer config rather than being skipped, because a skipped job produces no result for a required check.</p>
+<h2 id="bumping-commitlint"><a class="header" href="#bumping-commitlint">Bumping commitlint</a></h2>
+<p><code>package.json</code> and <code>package-lock.json</code> in <code>.github/commitlint/</code> pin <code>@commitlint/cli</code> and <code>@commitlint/config-conventional</code>, and the workflow runs <code>npm ci</code>, so the lockfile is what is installed. Renovate’s <code>npm</code> manager owns both - there is no bump procedure to follow by hand.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="github-pages"><a class="header" href="#github-pages">GitHub Pages</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/deploy-book.yaml"><code>.github/workflows/deploy-book.yaml</code></a> builds the mdBook from <code>docs/</code> on every push to <code>main</code> and pushes the result to the <code>gh-pages</code> branch, which is what serves <code>https://OWNER.github.io/REPO/</code>.</p>
+<p>It needs no secrets: <code>GITHUB_TOKEN</code> is enough to push to <code>gh-pages</code>, and <code>contents: write</code> is granted on the job rather than at the top of the file.</p>
+<h2 id="it-publishes-it-does-not-regenerate"><a class="header" href="#it-publishes-it-does-not-regenerate">It publishes, it does not regenerate</a></h2>
+<p><code>mdbook build</code> renders whatever <code>docs/</code> holds at that commit. Three of those pages are generator output - <code>docs/index.md</code>, <code>docs/security.md</code> and <code>docs/SUMMARY.md</code> - and nothing here runs the generator, so a page that was not regenerated before merging is published stale rather than rebuilt.</p>
+<p>That is deliberate: a deploy that regenerates would publish content that is not in the repository, so the committed tree and the published site would disagree. The <code>docs-generator</code> pre-commit hook is what keeps them in step, and <a href="#check-for-go-mod-changes"><code>check-go-mod.yaml</code></a> is the model - catch it before the merge, not after.</p>
+<h2 id="pages-has-to-be-enabled-and-that-is-not-in-the-repository"><a class="header" href="#pages-has-to-be-enabled-and-that-is-not-in-the-repository">Pages has to be enabled, and that is not in the repository</a></h2>
+<p>This is the one part the template cannot carry. The workflow pushes to <code>gh-pages</code> whether or not Pages is configured, so it goes green while the site 404s. In the repository’s Settings, under Pages, set the source to <strong>Deploy from a branch</strong>, branch <code>gh-pages</code>, folder <code>/</code>. See <a href="#new-repository-checklist"><code>new-repo-checklist.md</code></a> for the rest of the settings that do not travel from a template.</p>
+<p>Until that is done, every <code>https://OWNER.github.io/REPO/</code> link - in <code>README.md</code>, the issue chooser, and <code>docs/AGENTS.md</code>’s redirect rules - points at nothing.</p>
+<h2 id="the-redirect-rule-matters-here"><a class="header" href="#the-redirect-rule-matters-here">The redirect rule matters here</a></h2>
+<p>Because the site is published, renaming or moving a page breaks whatever already links to it from outside the repository, and mdBook does not notice - the old URL simply 404s. A move comes with an <code>[output.html.redirect]</code> entry in <a href="https://github.com/OWNER/REPO/blob/main/book.toml"><code>book.toml</code></a>. <a href="AGENTS.html"><code>docs/AGENTS.md</code></a> has the exact form, including why the value is resolved relative to the key’s own directory rather than the site root.</p>
+<h2 id="building-it-locally"><a class="header" href="#building-it-locally">Building it locally</a></h2>
+<pre><code class="language-sh">mdbook build &amp;&amp; mdbook serve
+</code></pre>
+<p><code>mdbook serve</code> watches <code>docs/</code> and reloads, which is the quick way to check a redirect actually resolves - the redirect file appears at the old path and names the new one.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="validate-pre-commit-hooks"><a class="header" href="#validate-pre-commit-hooks">Validate pre-commit hooks</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/pre-commit.yaml"><code>.github/workflows/pre-commit.yaml</code></a> runs the hooks from <a href="https://github.com/OWNER/REPO/blob/main/.pre-commit-config.yaml"><code>.pre-commit-config.yaml</code></a> over the whole tree with <a href="https://github.com/j178/prek">prek</a>, on every pull request and on the merge queue.</p>
+<p>It exists because the root <a href="AGENTS.html"><code>AGENTS.md</code></a> tells everyone to run the hooks before committing and nothing otherwise checks that they did. It also closes a gap the hooks have by design: a hook that reads the staged diff only sees uncommitted changes, so a clean local run says nothing about code that is already committed. <code>--all-files</code> here does.</p>
+<h2 id="what-it-skips-and-why"><a class="header" href="#what-it-skips-and-why">What it skips, and why</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Hook</th><th>Why it is skipped</th></tr>
+</thead>
+<tbody>
+<tr><td><code>docs-generator</code></td><td>It regenerates files rather than checking them, so in CI it would report a diff it created itself</td></tr>
+<tr><td><code>golangci-lint</code></td><td>Already covered by <a href="#validate-lint">Validate Lint</a>, at the same pinned version. Running it twice doubles the slowest job</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>markdown-table-padding</code> and <code>verify-vendor</code> are deliberately <strong>not</strong> skipped. Both are checks rather than rewrites, and the table check is not covered anywhere else.</p>
+<h2 id="setup-go-before-prek-is-not-optional"><a class="header" href="#setup-go-before-prek-is-not-optional"><code>setup-go</code> before prek is not optional</a></h2>
+<p>The <code>repo: local</code> hooks are <code>language: system</code> and shell out to the Go toolchain. Without Go on <code>PATH</code> they fail as “command not found”, which reads like a broken hook rather than a missing toolchain - so the workflow installs Go from <code>go-version-file: go.mod</code> before prek runs.</p>
+<h2 id="reproducing-a-failure"><a class="header" href="#reproducing-a-failure">Reproducing a failure</a></h2>
+<p>The same command, locally:</p>
+<pre><code class="language-sh">prek run --all-files --skip docs-generator --skip golangci-lint
+</code></pre>
+<p><code>prek</code> and <code>pre-commit</code> read the same config, so either works; <code>prek</code> is faster. Several of the hooks rewrite files, so re-stage after a run - and if the failure is only in CI, check the hook versions in the config are the ones installed locally.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="release-please"><a class="header" href="#release-please">Release Please</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/release-please.yaml"><code>.github/workflows/release-please.yaml</code></a> runs on every push to <code>main</code> and keeps one open pull request - the release PR - with the next version number, the regenerated <code>CHANGELOG.md</code>, and the bumped version in <code>.release-please-manifest.json</code>. Merging that pull request is what cuts a release: release-please then pushes the <code>vN.N.N</code> tag, which is what <a href="#goreleaser"><code>release.yaml</code></a> fires on.</p>
+<p>Nothing here decides the version. Conventional commit types in the pull request titles do, by way of the <code>changelog-sections</code> in <a href="https://github.com/OWNER/REPO/blob/main/release-please-config.json"><code>release-please-config.json</code></a>.</p>
+<h2 id="why-the-app-token"><a class="header" href="#why-the-app-token">Why the app token</a></h2>
+<p>The tag is the whole reason. A tag pushed with the default <code>GITHUB_TOKEN</code> does not trigger another workflow, by design, so <code>release.yaml</code> would never fire and a release would be cut with no artifacts attached to it. An app installation token has no such restriction.</p>
+<p>That is also why the top-level <code>permissions:</code> is <code>contents: read</code> and nothing else: every write is done with the app token, so <code>GITHUB_TOKEN</code> is only along for the ride.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Secret</th><th>What it is</th></tr>
+</thead>
+<tbody>
+<tr><td><code>RELEASE_PLEASE_GITHUB_APP_ID</code></td><td>The app’s client ID</td></tr>
+<tr><td><code>RELEASE_PLEASE_GITHUB_APP_SECRET</code></td><td>The app’s private key</td></tr>
+</tbody>
+</table>
+</div>
+<p>The same credentials drive <a href="#renovate-1"><code>renovate.yaml</code></a>, so there is one installation to grant and one key to rotate.</p>
+<h2 id="the-two-config-files"><a class="header" href="#the-two-config-files">The two config files</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>File</th><th>What it holds</th></tr>
+</thead>
+<tbody>
+<tr><td><code>release-please-config.json</code></td><td>How to version and what to write - release type, tag format, changelog sections, <code>extra-files</code></td></tr>
+<tr><td><code>.release-please-manifest.json</code></td><td>The current version. Release-please owns this file; do not edit it by hand</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>extra-files</code> is the one to fill in. Any file outside the manifest that pins this project’s own version - an install snippet, a collection manifest, an image tag in a guide - has to be listed there <em>and</em> annotated in place, or release-please does not touch it. Both halves are required; see the “A pinned release version is release-please’s to update” section of <a href="AGENTS.html"><code>docs/AGENTS.md</code></a>.</p>
+<h2 id="changelogmd-is-not-yours-to-edit"><a class="header" href="#changelogmd-is-not-yours-to-edit"><code>CHANGELOG.md</code> is not yours to edit</a></h2>
+<p>Release-please rewrites it wholesale on every run. Editing it by hand - including to resolve a merge conflict - is lost on the next release and shows up as a diff nobody authored. Let the bot win the conflict.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="goreleaser"><a class="header" href="#goreleaser">goreleaser</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/release.yaml"><code>.github/workflows/release.yaml</code></a> builds and publishes the release artifacts. It fires on any pushed tag, and in practice that tag comes from <a href="#release-please"><code>release-please.yaml</code></a> merging its release pull request.</p>
+<p>What it produces, from <a href="https://github.com/OWNER/REPO/blob/main/.goreleaser.yaml"><code>.goreleaser.yaml</code></a>:</p>
+<ul>
+<li>one binary per <code>goos</code>/<code>goarch</code> pair, version and commit baked in via <code>-ldflags -X</code></li>
+<li>a <code>tar.gz</code> per platform, <code>zip</code> on Windows, named to match <code>uname</code> output</li>
+<li><code>checksums.txt</code>, an SBOM per archive, a cosign bundle per archive and for the checksums file</li>
+<li>a build provenance attestation over <code>checksums.txt</code>, uploaded to the release</li>
+</ul>
+<h2 id="what-it-needs"><a class="header" href="#what-it-needs">What it needs</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Secret</th><th>What it is</th></tr>
+</thead>
+<tbody>
+<tr><td><code>COSIGN_KEY</code></td><td>The private half of the keypair published as <code>cosign.pub</code> at the root</td></tr>
+<tr><td><code>COSIGN_PASS</code></td><td>That key’s password</td></tr>
+</tbody>
+</table>
+</div>
+<p>Those are the <strong>secret</strong> names. The workflow maps them onto the environment variables <code>.goreleaser.yaml</code> reads, <code>COSIGN_PRIVATE_KEY</code> and <code>COSIGN_PASSWORD</code>, which are cosign’s own and are not renameable. Changing one side without the other produces an unsigned-key error at the signing step, not a missing-secret error.</p>
+<p>Both are required. The <code>signs:</code> blocks have no “unsigned if the key is missing” fallback, deliberately - a release that is quietly unsigned is worse than one that did not happen - so a missing secret fails the run rather than producing unsigned archives.</p>
+<h2 id="three-things-that-fail-quietly-rather-than-loudly"><a class="header" href="#three-things-that-fail-quietly-rather-than-loudly">Three things that fail quietly rather than loudly</a></h2>
+<ul>
+<li><strong><code>fetch-depth: 0</code></strong> is required, not a precaution. Goreleaser reads tag history for the version and the changelog, and a shallow clone gives it neither.</li>
+<li><strong>The <code>-ldflags -X</code> symbol paths have to exist.</strong> A <code>-X</code> naming a variable the code does not declare is silently ignored, and the binary reports the zero value for its own version. Check with <code>go doc &lt;module&gt;/config</code> rather than from memory after moving or renaming those variables.</li>
+<li><strong>Syft is installed before goreleaser runs</strong>, because the <code>sboms:</code> block shells out to it. Remove the <code>sboms:</code> block or the setup step together; the leftover half is an error in the middle of a release.</li>
+</ul>
+<h2 id="running-it-against-a-tag-that-does-not-exist"><a class="header" href="#running-it-against-a-tag-that-does-not-exist">Running it against a tag that does not exist</a></h2>
+<p><code>goreleaser release --snapshot --clean</code> builds everything locally without publishing, signing, or needing a tag, and <code>--skip=sign</code> drops the cosign steps if the key is not to hand. That is the way to check a <code>.goreleaser.yaml</code> change before it is a release.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="renovate-1"><a class="header" href="#renovate-1">Renovate</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/renovate.yaml"><code>.github/workflows/renovate.yaml</code></a> runs Renovate against this repository and nothing else, every four hours and on demand. It replaces the hosted <code>renovate[bot]</code> GitHub App: the bot is not installed, and the config in <a href="https://github.com/OWNER/REPO/blob/main/.github/renovate.json5"><code>.github/renovate.json5</code></a> is read by this run rather than by Mend’s servers.</p>
+<h2 id="why-it-runs-self-hosted"><a class="header" href="#why-it-runs-self-hosted">Why it runs self-hosted</a></h2>
+<p>The hosted app is simpler and needs no workflow. What it cannot do is use this organization’s own GitHub App credentials, and that matters for two reasons:</p>
+<ul>
+<li><strong>Pull requests opened with an app installation token trigger other workflows.</strong> A pull request opened with the default <code>GITHUB_TOKEN</code> does not, by design, so a dependency branch would sit with no checks on it - and an update nothing has tested is not something a reviewer can act on.</li>
+<li><strong>One app, one audit trail.</strong> The same app that release-please uses opens these, so there is one installation to grant, one private key to rotate, and one bot in the repository’s audit log.</li>
+</ul>
+<p>The cost is that the workflow is now a thing to maintain, and that the Renovate version is pinned to the action’s SHA rather than tracking the hosted service.</p>
+<h2 id="what-it-needs-1"><a class="header" href="#what-it-needs-1">What it needs</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Secret</th><th>What it is</th></tr>
+</thead>
+<tbody>
+<tr><td><code>RELEASE_PLEASE_GITHUB_APP_ID</code></td><td>The app’s client ID, shared with release-please</td></tr>
+<tr><td><code>RELEASE_PLEASE_GITHUB_APP_SECRET</code></td><td>The app’s private key, shared with release-please</td></tr>
+</tbody>
+</table>
+</div>
+<p>The app’s installation needs four permissions. Three are obvious and one is not:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Permission</th><th>Why</th></tr>
+</thead>
+<tbody>
+<tr><td>Contents write</td><td>Push the branch</td></tr>
+<tr><td>Pull requests write</td><td>Open and update the pull request</td></tr>
+<tr><td>Issues write</td><td>Maintain the dependency dashboard. Renovate logs an error and carries on without it</td></tr>
+<tr><td>Workflows write</td><td>Change a file under <code>.github/workflows/</code>. Without it, every action-pin update fails and nothing else does</td></tr>
+</tbody>
+</table>
+</div>
+<p>That last one is the failure worth knowing about in advance, because it looks like Renovate ignoring GitHub Actions rather than like a permission problem.</p>
+<h2 id="the-author-is-not-renovatebot"><a class="header" href="#the-author-is-not-renovatebot">The author is not <code>renovate[bot]</code></a></h2>
+<p>Self-hosted under this app, pull requests are authored by the app’s own bot rather than by <code>renovate[bot]</code>. Anything keyed on the author has to be told the new name, and each of these fails by quietly doing nothing:</p>
+<ul>
+<li>a post-processing workflow gated on <code>if: github.actor == 'renovate[bot]'</code></li>
+<li>a commitlint config selected by pull request author</li>
+<li>a <code>CODEOWNERS</code> or branch-protection exemption naming the bot</li>
+<li>a commit-author email pinned to <code>29139614+renovate[bot]@users.noreply.github.com</code></li>
+</ul>
+<p>The workflow exposes the right name as <code>steps.app-token.outputs.app-slug</code>, so a downstream gate can read <code>${{ ... }}[bot]</code> rather than hard-coding it.</p>
+<h2 id="running-it-by-hand"><a class="header" href="#running-it-by-hand">Running it by hand</a></h2>
+<p><code>workflow_dispatch</code> takes two inputs: <code>logLevel</code>, for a <code>debug</code> run when a dependency is not being picked up, and <code>dryRun</code>, which resolves every update and logs what it would open without touching the repository. Start with a dry run after changing <code>renovate.json5</code> - a bad <code>customManagers</code> regex matches nothing and reports success.</p>
+<h2 id="bringing-it-up-the-first-time"><a class="header" href="#bringing-it-up-the-first-time">Bringing it up the first time</a></h2>
+<p>In this order, because each step fails in a way that looks like the one before it:</p>
+<ol>
+<li><strong>The two secrets exist on the repository</strong>, or at the organization with this repository in scope. Without them <code>create-github-app-token</code> fails on the first step with an authentication error, which is the one unambiguous failure in the list.</li>
+<li><strong>The app is installed on this repository</strong>, with the four permissions in the table above. A missing install looks like Renovate reporting the repository as not found; a missing permission looks like Renovate ignoring one manager.</li>
+<li><strong>The labels in <code>renovate.json5</code> exist.</strong> GitHub drops an unknown label from a pull request without reporting it, so the branch arrives unlabelled and nothing says why - the same trap the issue forms have. <code>README.md</code> has the <code>gh label create</code> lines.</li>
+<li><strong>Dispatch with <code>dryRun: true</code> first.</strong> The log lists every update Renovate resolved and what it would have opened. This is the run that tells you whether the custom-manager regexes match anything, and it cannot leave a half-made branch behind.</li>
+<li><strong>Then dispatch for real and read the dependency dashboard</strong>, not the pull request list. The dashboard is the proof the run completed and had write access; an empty pull request list on its own is ambiguous between “working” and “found nothing”.</li>
+</ol>
+<p>Two things to expect on a repository that has only this workflow in it:</p>
+<ul>
+<li><strong><code>gomod</code>, <code>pre-commit</code> and <code>docker</code> find nothing</strong>, because there is no <code>go.mod</code>, no <code>.pre-commit-config.yaml</code> and no Dockerfile yet. Those managers reporting zero dependencies is correct, not a misconfiguration. Only <code>github-actions</code> has anything to read.</li>
+<li><strong>The first real run should open exactly one pull request</strong>: <code>actions/create-github-app-token</code> is pinned at <code>v3.3.0</code> here and <code>v3.4.0</code> is out. That is a deliberately useful starting state - it means the first run has one unambiguous thing to do, and a run that opens nothing is a signal rather than a shrug. Do not bump that pin by hand before testing.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="validate-lint"><a class="header" href="#validate-lint">Validate Lint</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/scan-lint.yaml"><code>.github/workflows/scan-lint.yaml</code></a> runs golangci-lint over the module on every pull request and on the merge queue, against <a href="https://github.com/OWNER/REPO/blob/main/.golangci.yaml"><code>.golangci.yaml</code></a>.</p>
+<h2 id="the-version-is-read-not-written"><a class="header" href="#the-version-is-read-not-written">The version is read, not written</a></h2>
+<p>This is the part worth understanding before changing the workflow. <code>golangci-lint-action</code> installs the <strong>latest release</strong> when given no version, so CI can lint with a newer golangci-lint than the hooks pin - and a new release that adds a check produces a failure that reproduces nowhere locally.</p>
+<p>So the workflow reads the version out of <code>.pre-commit-config.yaml</code> with <code>awk</code> and passes it to the action. One pin, in one place:</p>
+<ul>
+<li>Renovate’s <code>pre-commit</code> manager bumps the <code>rev:</code> in that file.</li>
+<li>Renovate’s <code>github-actions</code> manager updates <code>uses:</code> references - <strong>not</strong> inputs inside a <code>with:</code> block.</li>
+</ul>
+<p>A second pin written into the workflow is therefore one that nothing keeps in step with the first, which is exactly the drift this avoids. The <code>awk</code> fails the job if it cannot find the rev, rather than silently falling through to the next <code>repo:</code> entry and reporting some other tool’s version back.</p>
+<h2 id="what-golangciyaml-excludes-and-why-it-has-to"><a class="header" href="#what-golangciyaml-excludes-and-why-it-has-to">What <code>.golangci.yaml</code> excludes, and why it has to</a></h2>
+<p><code>magefiles/*.go</code> and <code>magefiles/core/</code> are excluded. Those files are <code>package main</code> behind <code>//go:build mage</code>, and mage supplies the main function at runtime, so the linter cannot build them - with or without <code>-tags mage</code>. Everything under <code>magefiles/pkg/</code> is ordinary Go and is linted like the rest of the module.</p>
+<p>Two settings worth knowing before adding a <code>//nolint</code>:</p>
+<ul>
+<li><strong><code>nolintlint</code> is on with <code>require-specific: true</code></strong>, so a bare <code>//nolint</code> fails. Name the linter.</li>
+<li><strong><code>errcheck</code> has <code>check-blank: true</code></strong>, so <code>_ = f()</code> is an error too. The house answer is an entry in <code>errcheck.exclude-functions</code> for a function whose error is never actionable, not a suppression at each call site.</li>
+</ul>
+<h2 id="dockerfiles"><a class="header" href="#dockerfiles">Dockerfiles</a></h2>
+<p>Cargoship’s version of this workflow carries a second <code>containers</code> job, one matrix entry per Dockerfile, running hadolint. It is left out here as a <code>TEMPLATE:</code> comment because there are no Dockerfiles yet. Note when adding it that hadolint’s action takes a single path and its recursive mode globs from the repository root, which drags in the vendored Dockerfiles under <code>vendor/</code> - so the paths are listed explicitly.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="scorecards-supply-chain-security"><a class="header" href="#scorecards-supply-chain-security">Scorecards supply-chain security</a></h1>
+<p><a href="https://github.com/OWNER/REPO/blob/main/.github/workflows/scorecard.yaml"><code>.github/workflows/scorecard.yaml</code></a> runs <a href="https://securityscorecards.dev/">OpenSSF Scorecard</a> over the repository and publishes the result three ways: to the public API behind the <code>README.md</code> badge, to GitHub’s code-scanning dashboard as SARIF, and as a run artifact kept for five days.</p>
+<p>It fires on pushes to <code>main</code>, weekly on Saturday at 01:30 UTC, and whenever a branch protection rule changes - that last trigger exists because the Branch-Protection check reads settings rather than files, so a protection change is the only thing that would otherwise move the score with no commit behind it.</p>
+<h2 id="it-only-works-on-the-default-branch"><a class="header" href="#it-only-works-on-the-default-branch">It only works on the default branch</a></h2>
+<p>Scorecard scores <code>main</code> and nothing else. A pull request cannot move the published score, and the score a reviewer sees is always the last merge’s. To check a change before it lands, score the working tree by hand instead - <a href="https://github.com/OWNER/REPO/blob/main/.github/AGENTS.md"><code>.github/AGENTS.md</code></a> has the <code>--local</code> invocation and the handful of checks worth running.</p>
+<h2 id="publish_results-true-is-what-the-badge-needs"><a class="header" href="#publish_results-true-is-what-the-badge-needs"><code>publish_results: true</code> is what the badge needs</a></h2>
+<p>The workflow can run, fill in the code-scanning dashboard, and leave the badge reading <code>unknown</code> indefinitely - that is what <code>publish_results: false</code> produces. Publishing is what writes the score to <code>api.scorecard.dev</code>, which is the endpoint the badge image comes from.</p>
+<p>Two further conditions, neither of which the workflow can satisfy on its own:</p>
+<ul>
+<li><strong>The repository has to be public.</strong> The public API holds no score for a private repository, so the badge cannot resolve.</li>
+<li><strong>The first score takes a run.</strong> Until the workflow has completed once on <code>main</code>, the badge reads <code>unknown</code>, and that is not a misconfiguration.</li>
+</ul>
+<h2 id="permissions-1"><a class="header" href="#permissions-1">Permissions</a></h2>
+<p><code>permissions: read-all</code> at the top, with two writes on the job:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Permission</th><th>Why</th></tr>
+</thead>
+<tbody>
+<tr><td><code>security-events: write</code></td><td>Upload the SARIF to the code-scanning dashboard</td></tr>
+<tr><td><code>id-token: write</code></td><td>The OIDC token the published result is signed with - no badge without it</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>persist-credentials: false</code> on the checkout is deliberate and Scorecard’s own Token-Permissions check looks for it.</p>
+<h2 id="annotating-a-check-that-is-wrong-rather-than-fixing-it"><a class="header" href="#annotating-a-check-that-is-wrong-rather-than-fixing-it">Annotating a check that is wrong rather than fixing it</a></h2>
+<p>Some findings are correct about the file and wrong about the project - a vendored dependency’s own CI script tripping Pinned-Dependencies, say, which no build here ever invokes. Those go in <code>.github/scorecard.yml</code>, which this template deliberately does <strong>not</strong> ship, because an annotation with no reason behind it is worse than a lower score.</p>
+<p>The shape, when one is needed:</p>
+<pre><code class="language-yaml">annotations:
+  - checks:
+      - pinned-dependencies
+    reasons:
+      # Why this finding does not apply here. Name the file, say what it is, and say why
+      # nothing in this repository's build or CI path runs it.
+      - reason: not-applicable
+</code></pre>
+<p>Two rules about that file, both learned the hard way:</p>
+<ul>
+<li><strong>Every annotation carries its reason as a comment</strong>, not just the enum. <code>not-applicable</code> on its own tells the next reader nothing, and the finding will look like an oversight to be cleaned up.</li>
+<li><strong>An annotation outlives what justified it.</strong> When the dependency goes or the script stops being vendored, the entry is still there, still suppressing a real finding. The root <a href="AGENTS.html"><code>AGENTS.md</code></a> treats removing one as the operator’s call rather than a documentation change - flag it, do not quietly delete it.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="docsagent"><a class="header" href="#docsagent"><code>docs/agent/</code></a></h1>
+<p>The record of decisions that are not recoverable from the code. Everything here answers a question of the form “why is this odd thing the way it is”, asked by someone - a person or an agent - who is about to change it back.</p>
+<h2 id="choice-md-are-constraints-not-history"><a class="header" href="#choice-md-are-constraints-not-history"><code>choice-*.md</code> are constraints, not history</a></h2>
+<p>This is the convention the root <a href="../AGENTS.html"><code>AGENTS.md</code></a> leans on, and the reason the directory exists. A <code>choice-*.md</code> file records a tradeoff that was made deliberately and that looks, from the code alone, like an oversight waiting to be cleaned up: a suppression in a scanner config, a dependency pinned below its latest version, a backend selected by one property rather than the obvious one, a test fixture that duplicates something upstream.</p>
+<p>Three rules follow from that:</p>
+<ul>
+<li><strong>Write one when the code cannot carry the reasoning.</strong> A comment is better than a document whenever it fits. What goes here is the decision too long for a comment and too load-bearing to lose - typically one where the alternative was tried, or where the cost of the choice is paid somewhere far from where it was made.</li>
+<li><strong>Read before reversing.</strong> The root <code>AGENTS.md</code> names three or four things that look reversible and are not. If a change here would undo something a <code>choice-*.md</code> argues for, the document is the first thing to read and the argument is the thing to answer - not the code.</li>
+<li><strong>A superseded choice is marked, not deleted.</strong> When the thing a document justified goes away, the reasoning usually still explains something that is still here: a Dependabot ignore entry, a Scorecard annotation, the shape of a package. Mark it superseded, name what superseded it, and leave the argument in place. Deleting it loses the answer to “why is this still configured”.</li>
+</ul>
+<h2 id="what-else-belongs-here"><a class="header" href="#what-else-belongs-here">What else belongs here</a></h2>
+<ul>
+<li><strong>AI usage disclosure.</strong> How agents are used in this repository and what review they are subject to. Where a release publishes a disclosure manifest, this is the page it is a snapshot of.</li>
+<li><strong>Design notes an agent wrote for itself</strong> - an investigation, a measurement, a survey of three approaches - where the conclusion is worth keeping but is not a decision. Name these something other than <code>choice-*</code>, so the constraint files stay findable.</li>
+</ul>
+<h2 id="what-does-not"><a class="header" href="#what-does-not">What does not</a></h2>
+<p>An internal note is not a guide. If an operator would ever run the commands in it, it belongs in <a href="guides/README.html"><code>docs/guides/</code></a>; if a contributor would, it belongs in <a href="dev/README.html"><code>docs/dev/</code></a>. The distinction matters because the checking standard is different - a wrong count in a note here costs a reader a minute, and a wrong command in a guide costs an operator an afternoon.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
