@@ -68,6 +68,7 @@ jobs:
           # Sets RENOVATE_TOKEN. An installation token is minted per run and expires in an
           # hour, which is why this is a step rather than a long-lived secret.
           token: ${{ steps.app-token.outputs.token }}
+          renovate-image: ghcr.io/renovatebot/renovate:44.257.9@sha256:d6b65ff3562dd499240b23d34ef806ec7e5fd2675e4236a027dfb36774f2aa75
         env:
           # This repository only. Autodiscovery would walk every repository the app is
           # installed on, which is not what a per-repository workflow should do.
