@@ -68,6 +68,8 @@ jobs:
           # Sets RENOVATE_TOKEN. An installation token is minted per run and expires in an
           # hour, which is why this is a step rather than a long-lived secret.
           token: ${{ steps.app-token.outputs.token }}
+          # renovate: datasource=docker depName=ghcr.io/renovatebot/renovate
+          renovate-version: 44.257.9
         env:
           # This repository only. Autodiscovery would walk every repository the app is
           # installed on, which is not what a per-repository workflow should do.
