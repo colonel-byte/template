@@ -127,7 +127,7 @@
         "/(^|/).+\\.ya?ml(\\.j2)?$/",
       ],
       matchStrings: [
-        "(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?( repository=(?<registryUrl>\\S+))?\n.+?: ?\"?.*(?<currentValue>\\S+?)\"?$)",
+        "(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?( repository=(?<registryUrl>\\S+))?\n.+?: ?\"?(?<currentValue>[^\"\\s]+)\"?$)",
         "(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?( repository=(?<registryUrl>\\S+))?\n.+?(?<currentValue>(?:v|\\d|\\.)+)$)",
         "(?m:# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>[a-z-0-9]+?))?\n.+?/(?<currentValue>(v|\\d)[^/]+)\\S+$)",
       ],
