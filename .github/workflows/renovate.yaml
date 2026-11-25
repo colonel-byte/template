@@ -69,7 +69,7 @@ jobs:
           # hour, which is why this is a step rather than a long-lived secret.
           token: ${{ steps.app-token.outputs.token }}
           # renovate: datasource=docker depName=ghcr.io/renovatebot/renovate versioning=docker
-          renovate-version: 44.261.2
+          renovate-version: 44.262.2
         env:
           # This repository only. Autodiscovery would walk every repository the app is
           # installed on, which is not what a per-repository workflow should do.
