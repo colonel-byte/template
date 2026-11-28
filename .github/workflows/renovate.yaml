@@ -45,9 +45,12 @@ jobs:
     steps:
       # The same app as release-please. Its installation token is what opens the branches
       # and pull requests, so the app needs, at minimum: Contents write, Pull requests
-      # write, Issues write for the dependency dashboard, and Workflows write - without
-      # that last one GitHub refuses any change to a file under .github/workflows/, so
-      # every action-pin update fails while every other update succeeds.
+      # write, Issues write for the dependency dashboard, Workflows write - without it
+      # GitHub refuses any change to a file under .github/workflows/, so every action-pin
+      # update fails while every other update succeeds - Commit statuses write, which
+      # Renovate uses to report a branch's artifact errors and without which the first
+      # branch whose artifacts fail aborts the whole run as "Repository has changed during
+      # renovation", and Checks read for the CI results that gate a rebase.
       #
       # This also changes who the author is. The hosted app opens pull requests as
       # `renovate[bot]`; self-hosted under this app they are opened as the app's own bot,

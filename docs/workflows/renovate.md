@@ -24,16 +24,18 @@ The other cache Renovate keeps, the repository cache of branch SHAs and pull req
 | `RELEASE_PLEASE_GITHUB_APP_ID`     | The app's client ID, shared with release-please   |
 | `RELEASE_PLEASE_GITHUB_APP_SECRET` | The app's private key, shared with release-please |
 
-The app's installation needs four permissions. Three are obvious and one is not:
+The app's installation needs six permissions. Four are obvious and two are not:
 
-| Permission          | Why                                                                                                       |
-| ------------------- | --------------------------------------------------------------------------------------------------------- |
-| Contents write      | Push the branch                                                                                           |
-| Pull requests write | Open and update the pull request                                                                          |
-| Issues write        | Maintain the dependency dashboard. Renovate logs an error and carries on without it                       |
-| Workflows write     | Change a file under `.github/workflows/`. Without it, every action-pin update fails and nothing else does |
+| Permission            | Why                                                                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Contents write        | Push the branch                                                                                                                                                           |
+| Pull requests write   | Open and update the pull request                                                                                                                                          |
+| Issues write          | Maintain the dependency dashboard. Renovate logs an error and carries on without it                                                                                       |
+| Workflows write       | Change a file under `.github/workflows/`. Without it, every action-pin update fails and nothing else does                                                                 |
+| Commit statuses write | Report a branch's artifact error as a commit status. Without it, the first branch whose artifacts fail aborts the whole run as "Repository has changed during renovation" |
+| Checks read           | Read CI results when gating a rebase, which GitHub Actions reports as check runs rather than commit statuses                                                              |
 
-That last one is the failure worth knowing about in advance, because it looks like Renovate ignoring GitHub Actions rather than like a permission problem.
+The last two are the failures worth knowing about in advance, because each surfaces as Renovate misbehaving - ignoring GitHub Actions, or claiming the repository moved mid-run - rather than as a permission problem.
 
 ## The author is not `renovate[bot]`
 
@@ -55,7 +57,7 @@ The workflow exposes the right name as `steps.app-token.outputs.app-slug`, so a 
 In this order, because each step fails in a way that looks like the one before it:
 
 1. **The two secrets exist on the repository**, or at the organization with this repository in scope. Without them `create-github-app-token` fails on the first step with an authentication error, which is the one unambiguous failure in the list.
-2. **The app is installed on this repository**, with the four permissions in the table above. A missing install looks like Renovate reporting the repository as not found; a missing permission looks like Renovate ignoring one manager.
+2. **The app is installed on this repository**, with the six permissions in the table above. A missing install looks like Renovate reporting the repository as not found; a missing permission looks like Renovate ignoring one manager.
 3. **The labels in `renovate.json5` exist.** GitHub drops an unknown label from a pull request without reporting it, so the branch arrives unlabelled and nothing says why - the same trap the issue forms have. `README.md` has the `gh label create` lines.
 4. **Dispatch with `dryRun: true` first.** The log lists every update Renovate resolved and what it would have opened. This is the run that tells you whether the custom-manager regexes match anything, and it cannot leave a half-made branch behind.
 5. **Then dispatch for real and read the dependency dashboard**, not the pull request list. The dashboard is the proof the run completed and had write access; an empty pull request list on its own is ambiguous between "working" and "found nothing".
