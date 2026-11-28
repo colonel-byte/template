@@ -3,7 +3,7 @@
   "private": true,
   "description": "Pinned devDependencies for the PR Title Check workflow (.github/workflows/commitlint.yaml)",
   "devDependencies": {
-    "@commitlint/cli": "21.2.4",
-    "@commitlint/config-conventional": "21.2.4"
+    "@commitlint/cli": "21.3.0",
+    "@commitlint/config-conventional": "21.3.0"
   }
 }
