@@ -11,6 +11,12 @@ The hosted app is simpler and needs no workflow. What it cannot do is use this o
 
 The cost is that the workflow is now a thing to maintain, and that the Renovate version is pinned to the action's SHA rather than tracking the hosted service.
 
+## The run is cached
+
+Renovate resolves every dependency from the registry on each run, which once a repository has real dependencies is most of the wall clock. The workflow restores Renovate's package cache - resolved versions and changelogs - before the Renovate step, so a scheduled run only re-asks the registries about what moved. The cache key carries `github.run_id`, so every run writes a new entry and `restore-keys` picks up the newest previous one; a fixed key would be written once and then never updated.
+
+The other cache Renovate keeps, the repository cache of branch SHAs and pull request state, is deliberately disabled (`RENOVATE_REPOSITORY_CACHE: disabled` in the workflow). Restored across runs it goes stale the moment a Renovate pull request merges: the next run sees the merge happen "during" the run, aborts with "Repository has changed during renovation", and - because an aborted run still saves its cache entry - every following run inherits the same stale state and aborts the same way. Re-reading branch and pull request state from the API each run is a handful of list calls, not the minutes the package cache saves.
+
 ## What it needs
 
 | Secret                             | What it is                                        |
