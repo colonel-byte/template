@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-37f0680d.js";
+            window.path_to_searchindex_js = "../searchindex-c4825996.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-f6f71e9d.js"></script>
@@ -191,6 +191,9 @@
 <li><strong>One app, one audit trail.</strong> The same app that release-please uses opens these, so there is one installation to grant, one private key to rotate, and one bot in the repository’s audit log.</li>
 </ul>
 <p>The cost is that the workflow is now a thing to maintain, and that the Renovate version is pinned to the action’s SHA rather than tracking the hosted service.</p>
+<h2 id="the-run-is-cached"><a class="header" href="#the-run-is-cached">The run is cached</a></h2>
+<p>Renovate resolves every dependency from the registry on each run, which once a repository has real dependencies is most of the wall clock. The workflow restores Renovate’s package cache - resolved versions and changelogs - before the Renovate step, so a scheduled run only re-asks the registries about what moved. The cache key carries <code>github.run_id</code>, so every run writes a new entry and <code>restore-keys</code> picks up the newest previous one; a fixed key would be written once and then never updated.</p>
+<p>The other cache Renovate keeps, the repository cache of branch SHAs and pull request state, is deliberately disabled (<code>RENOVATE_REPOSITORY_CACHE: disabled</code> in the workflow). Restored across runs it goes stale the moment a Renovate pull request merges: the next run sees the merge happen “during” the run, aborts with “Repository has changed during renovation”, and - because an aborted run still saves its cache entry - every following run inherits the same stale state and aborts the same way. Re-reading branch and pull request state from the API each run is a handful of list calls, not the minutes the package cache saves.</p>
 <h2 id="what-it-needs"><a class="header" href="#what-it-needs">What it needs</a></h2>
 <div class="table-wrapper">
 <table>
