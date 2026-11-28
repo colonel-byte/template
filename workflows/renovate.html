@@ -37,7 +37,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-c4825996.js";
+            window.path_to_searchindex_js = "../searchindex-ae010c44.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-f6f71e9d.js"></script>
@@ -206,7 +206,7 @@
 </tbody>
 </table>
 </div>
-<p>The app’s installation needs four permissions. Three are obvious and one is not:</p>
+<p>The app’s installation needs six permissions. Four are obvious and two are not:</p>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -217,10 +217,12 @@
 <tr><td>Pull requests write</td><td>Open and update the pull request</td></tr>
 <tr><td>Issues write</td><td>Maintain the dependency dashboard. Renovate logs an error and carries on without it</td></tr>
 <tr><td>Workflows write</td><td>Change a file under <code>.github/workflows/</code>. Without it, every action-pin update fails and nothing else does</td></tr>
+<tr><td>Commit statuses write</td><td>Report a branch’s artifact error as a commit status. Without it, the first branch whose artifacts fail aborts the whole run as “Repository has changed during renovation”</td></tr>
+<tr><td>Checks read</td><td>Read CI results when gating a rebase, which GitHub Actions reports as check runs rather than commit statuses</td></tr>
 </tbody>
 </table>
 </div>
-<p>That last one is the failure worth knowing about in advance, because it looks like Renovate ignoring GitHub Actions rather than like a permission problem.</p>
+<p>The last two are the failures worth knowing about in advance, because each surfaces as Renovate misbehaving - ignoring GitHub Actions, or claiming the repository moved mid-run - rather than as a permission problem.</p>
 <h2 id="the-author-is-not-renovatebot"><a class="header" href="#the-author-is-not-renovatebot">The author is not <code>renovate[bot]</code></a></h2>
 <p>Self-hosted under this app, pull requests are authored by the app’s own bot rather than by <code>renovate[bot]</code>. Anything keyed on the author has to be told the new name, and each of these fails by quietly doing nothing:</p>
 <ul>
@@ -236,7 +238,7 @@
 <p>In this order, because each step fails in a way that looks like the one before it:</p>
 <ol>
 <li><strong>The two secrets exist on the repository</strong>, or at the organization with this repository in scope. Without them <code>create-github-app-token</code> fails on the first step with an authentication error, which is the one unambiguous failure in the list.</li>
-<li><strong>The app is installed on this repository</strong>, with the four permissions in the table above. A missing install looks like Renovate reporting the repository as not found; a missing permission looks like Renovate ignoring one manager.</li>
+<li><strong>The app is installed on this repository</strong>, with the six permissions in the table above. A missing install looks like Renovate reporting the repository as not found; a missing permission looks like Renovate ignoring one manager.</li>
 <li><strong>The labels in <code>renovate.json5</code> exist.</strong> GitHub drops an unknown label from a pull request without reporting it, so the branch arrives unlabelled and nothing says why - the same trap the issue forms have. <code>README.md</code> has the <code>gh label create</code> lines.</li>
 <li><strong>Dispatch with <code>dryRun: true</code> first.</strong> The log lists every update Renovate resolved and what it would have opened. This is the run that tells you whether the custom-manager regexes match anything, and it cannot leave a half-made branch behind.</li>
 <li><strong>Then dispatch for real and read the dependency dashboard</strong>, not the pull request list. The dashboard is the proof the run completed and had write access; an empty pull request list on its own is ambiguous between “working” and “found nothing”.</li>
